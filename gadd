@@ -7,10 +7,15 @@ cd $HOME/pnl/github/dot-files/T480/
 
 git checkout T480 >/dev/null
 
-# Remove all unhidden and hidden files.
-rm -rf $HOME/pnl/github/dot-files/T480/*
+# Remove all hidden files.
 rm -rf $HOME/pnl/github/dot-files/T480/.[A-z]*
 
+# Remove all files in "scripts" submodule.
+rm -rf $HOME/pnl/github/dot-files/T480/scripts/*
+
+cp -fr                  \
+$HOME/.scripts/*        \
+$HOME/pnl/github/dot-files/scripts
 
 # Changed files at $HOME/.
 cp -fr              \
@@ -21,7 +26,6 @@ $HOME/.alias        \
 $HOME/.vimrc        \
 $HOME/.bashrc       \
 $HOME/.inputrc      \
-$HOME/.scripts      \
 $HOME/.profile      \
 $HOME/.gitconfig    \
 $HOME/.Xresources   \
