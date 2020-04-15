@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Build and move cscope and ctags database to $HOME/.cstags_dir/
+#
+# Always use `set nocscoperelative` in vim as this script changes path of cscope
+# database and absolute path is needed.
+#
+# Usage:
+#
+#   * `csb ~/esp/esp-idf/ ../dwm/ ../dmneu/ ~/repo/st` (give directories as input)
+#   * `csb`                    (build from current directory)
+#
+# This will create a cscope database for directories and place it in
+# `$HOME/.cstags_dir/`.
+
+if [ $1 ]; then
+    STARTDIR=$PWD
+    for i in $@; do
+        cd $i
+        target_dir="`basename $PWD`"
+        cwd=$PWD
+        mkdir -p $HOME/.cstags_dir/$target_dir
+        cd $HOME/.cstags_dir/$target_dir
+        find $cwd -name '*.c' -o -name '*.h' > files.cscope
+        cscope -bi files.cscope
+        ctags -R $cwd
+        cd $STARTDIR
+    done
+else
+    target_dir="`basename $PWD`"
+    cwd=$PWD
+    mkdir -p $HOME/.cstags_dir/$target_dir
+    cd $HOME/.cstags_dir/$target_dir
+    find $cwd -name '*.c' -o -name '*.h' > files.cscope
+    cscope -bi files.cscope
+    ctags -R $cwd
+fi
