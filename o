@@ -1,0 +1,2 @@
+#! /bin/sh
+gcc "$1" -o ioawehfads && ./ioawehfads; rm ioawehfads

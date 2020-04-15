@@ -1,0 +1,23 @@
+#!/bin/bash
+# Original source: https://raw.github.com/kaihendry/Kai-s--HOME/master/.xinitrc
+
+while true
+do
+	BANDWIDTH="$(/usr/share/i3blocks/bandwidth)"
+
+	VOL="$(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
+	# VOL=$(/usr/share/i3blocks/volume 5 pulse)
+
+	TIME="$(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
+
+	# IP can be confusing if you use vmware.
+	IP="$(for i in `ip r`; do echo $i; done | grep -A 1 src | tail -n1)"
+	TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))°C"
+	BAT="$(/usr/share/i3blocks/battery |head -n1)"
+	CPUUSAGE="$(/usr/share/i3blocks/cpu_usage |head -n1)"
+
+
+
+	xsetroot -name "$CPUUSAGE $BAT $BANDWIDTH $VOL $TEMP $TIME"
+	sleep 2s
+done &

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo $(date) > $HOME/downspeed
+for((i=0;i<10;i++));do
+    (command -v speedtest >/dev/null && speedtest --no-upload |grep ^Download >>$HOME/downspeed) || echo "Error"
+done
+
+# Give any argument for logging upload speed also.
+
+if [ $1 ]; then
+    echo $(date) > $HOME/upspeed
+    for((i=0;i<10;i++));do
+        command -v speedtest && speedtest --no-download |grep ^Upload >>$HOME/upspeed
+    done
+fi
