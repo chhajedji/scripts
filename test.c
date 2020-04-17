@@ -580,10 +580,30 @@
  * }
  */
 
-#include "stdlib.h"
+/*
+ * #include "stdlib.h"
+ * 
+ * int main(void)
+ * {
+ *     char *command = "pwd\ncd /home\nls";
+ *     system (command);
+ * }
+ */
 
-int main(void)
+int main(void )
 {
-    char *command = "pwd\ncd /home\nls";
-    system (command);
+    int a = 0x01020304;
+    int b = 20;
+    char *pa = (char *)&a;
+    int *pb = &b;
+    int c = 0;
+
+    printf("%d\t%d\t%d\t%d\n", *(pa), *(pa+1), *(pa+2), *(pa+3));
+    pa +=1;
+
+    *pb +=1;
+
+    c = *pa + *pb;
+
+    printf("%d %d %d\n", *--pa, *pb, c);
 }
