@@ -23,3 +23,5 @@ case $1 in
         ;;
 
 esac && paplay $HOME/.config/i3/other_files/volume_change.ogg
+
+pgrep dwmstatus && pkill -P $(pgrep dwmstatus) sleep
