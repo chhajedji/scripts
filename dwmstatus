@@ -2,23 +2,61 @@
 
 while true
 do
-	# BANDWIDTH=
 
-	BAT="BAT $(cat /sys/class/power_supply/BAT1/capacity)%"
+    battery()
+    {
+        STATUS="$(cat /sys/class/power_supply/BAT1/status)"
 
-	VOL="VOL $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
+    # When battery is completely charged, Plug icon will be shown indicating
+    # power from AC supply. If not, then "(D)" or "(C)" depending on it's
+    # status.
+        [ "$STATUS" = "Full" ] && echo -n "" && return 0
+        [ "$STATUS" = "Unknown" ] && echo -n "" && return 0
+        { [ "$STATUS" = "Charging" ] && STATCHAR="(C)"; } ||
+            { [ "$STATUS" = "Discharging" ] && STATCHAR="(D)"; }
 
-	# CPUUSAGE="CPU )"
+        CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
 
-	TEMP="$(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
+        echo -n " $CAP $STATCHAR"
+    }
 
-	# up or down.
-	WIFISTAT="$(cat /sys/class/net/wlp3s0/operstate)"
+    vol()
+    {
+        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
+    }
 
-	TIME="$(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
+    cpu()
+    {
+        echo -n " $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%"
+    }
+
+    ram()
+    {
+        FREE_DATA=$(free -m | grep Mem)
+        CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
+        TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
+
+        echo -n " $(echo "scale = 2; ($CURRENT/$TOTAL)*100" | bc)%"
+    }
+
+    temp()
+    {
+        echo -n " $(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
+    }
+
+    datetime()
+    {
+        echo -n " $(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
+    }
+
+#     bandwidth()
+#    {
+#
+#    }
 
 
 
-	xsetroot -name "$BAT    $VOL    $TEMP    $WIFISTAT    $TIME"
-	sleep 2s
+    xsetroot -name "$(battery)  |  $(vol)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+    sleep 2s
+
 done &
