@@ -11,7 +11,7 @@ git checkout T480 >/dev/null
 rm -rf $HOME/pnl/github/dot-files/T480/.[A-z]*
 
 # Remove all files in "scripts" submodule.
-rm -rf $HOME/pnl/github/dot-files/T480/scripts/*
+rm -rf $HOME/pnl/github/dot-files/scripts/*
 
 cp -fr                  \
 $HOME/.scripts/*        \
