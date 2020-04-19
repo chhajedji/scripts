@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Always run this script relative to current path (eg: `. gadd`). Or else
+# Always source this script, do not execute or else
 # `cd` will not actually change directory!
 
-cd $HOME/pnl/github/dot-files/T480/
+cd $HOME/pnl/github/dot-files/
 
 git checkout T480 >/dev/null
 

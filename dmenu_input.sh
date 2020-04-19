@@ -2,6 +2,9 @@
 
 DMENU_FONT1="Inconsolata 12"
 
+# If "BROWSER" unset globally, set locally.
+[ -n "$BROWSER" ] || BROWSER="firefox -new-window"
+
 case $1 in
 
 # Search dictionary.
