@@ -590,20 +590,51 @@
  * }
  */
 
-int main(void )
+/*
+ * int main(void )
+ * {
+ *     int a = 0x01020304;
+ *     int b = 20;
+ *     char *pa = (char *)&a;
+ *     int *pb = &b;
+ *     int c = 0;
+ * 
+ *     printf("%d\t%d\t%d\t%d\n", *(pa), *(pa+1), *(pa+2), *(pa+3));
+ *     pa +=1;
+ * 
+ *     *pb +=1;
+ * 
+ *     c = *pa + *pb;
+ * 
+ *     printf("%d %d %d\n", *--pa, *pb, c);
+ * }
+ */
+
+/*
+ * typedef enum {
+ *     a = 0,
+ *     b,
+ *     c,
+ *     d,
+ * }num;
+ * 
+ * int main(void)
+ * {
+ *     num foo = 2;
+ *     printf("%d\n", foo);
+ *     foo = 8;
+ *     printf("%d\n", foo);
+ * }
+ */
+
+#include "string.h"
+#define hi "hello"
+
+int main(void)
 {
-    int a = 0x01020304;
-    int b = 20;
-    char *pa = (char *)&a;
-    int *pb = &b;
-    int c = 0;
-
-    printf("%d\t%d\t%d\t%d\n", *(pa), *(pa+1), *(pa+2), *(pa+3));
-    pa +=1;
-
-    *pb +=1;
-
-    c = *pa + *pb;
-
-    printf("%d %d %d\n", *--pa, *pb, c);
+    const int aa = 5;
+    char *a = "hi";
+    char *b = "h";
+    const int c = strlen(b);
+        printf("%d\t%ld\n", strncmp(a, b, c), strlen(hi));
 }

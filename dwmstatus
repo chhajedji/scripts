@@ -1,19 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
 while true
 do
 
     battery()
     {
-        STATUS="$(cat /sys/class/power_supply/BAT1/status)"
+        STATCHAR="[$(cat /sys/class/power_supply/BAT1/status | colrm 2 99)]"
 
     # When battery is completely charged, Plug icon will be shown indicating
-    # power from AC supply. If not, then "(D)" or "(C)" depending on it's
+    # power from AC supply. If not, then "D" or "C" depending on it's
     # status.
-        [ "$STATUS" = "Full" ] && echo -n "" && return 0
-        [ "$STATUS" = "Unknown" ] && echo -n "" && return 0
-        { [ "$STATUS" = "Charging" ] && STATCHAR="(C)"; } ||
-            { [ "$STATUS" = "Discharging" ] && STATCHAR="(D)"; }
+        [ "$STATCHAR" = "[F]" ] && echo -n "" && return 0
 
         CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
 
@@ -22,7 +19,7 @@ do
 
     vol()
     {
-        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
+        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
     }
 
     cpu()
@@ -36,7 +33,7 @@ do
         CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
         TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
 
-        echo -n " $(echo "scale = 2; ($CURRENT/$TOTAL)*100" | bc)%"
+        echo -n " $(echo "scale = 1; ($CURRENT/$TOTAL)*100" | bc)%"
     }
 
     temp()
@@ -49,14 +46,17 @@ do
         echo -n " $(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
     }
 
-#     bandwidth()
-#    {
-#
-#    }
+     bandwidth()
+    {
+        # i3bar script.
+        # TODO: Remove dependancy on this script.
+        echo -n "$(/usr/share/i3blocks/bandwidth)"
+    }
 
 
 
-    xsetroot -name "$(battery)  |  $(vol)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+xsetroot -name "$(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+# xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
     sleep 2s
 
 done &
