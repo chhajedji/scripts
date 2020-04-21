@@ -25,4 +25,4 @@ new_wall.sh &
 
 xrdb -merge $HOME/.Xresources
 
-wmctrl -m |grep dwm && dwmstatus
+wmctrl -m |grep dwm && dwmbar
