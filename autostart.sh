@@ -25,4 +25,6 @@ new_wall.sh &
 
 xrdb -merge $HOME/.Xresources
 
-wmctrl -m |grep dwm && dwmbar
+# 1. Check if dwm is current windown manager.
+# 2. Start dwmbar only if it's not running.
+wmctrl -m |grep dwm && { pgrep dwmbar || dwmbar; }
