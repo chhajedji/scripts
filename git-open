@@ -20,6 +20,7 @@ c,commit!     open current commit
 i,issue!      open issues page
 s,suffix=     append this suffix
 p,print!      just print the url
+o,open_github! Open https://github.com/chhajedji
 "
 
 # https://github.com/koalaman/shellcheck/wiki/SC1090
@@ -32,6 +33,8 @@ is_issue=0
 protocol="https"
 print_only=0
 suffix_flag=""
+show_github=0
+GITHUB_URL="https://github.com/chhajedji"
 
 while test $# != 0; do
   case "$1" in
@@ -39,10 +42,16 @@ while test $# != 0; do
   --issue) is_issue=1;;
   --suffix=*) suffix_flag="$1";;
   --print) print_only=1;;
+  --open_github) echo "Opening $GITHUB_URL" && show_github=1;;
   --) shift; break ;;
   esac
   shift
 done
+
+if (( show_github )); then
+  $BROWSER $GITHUB_URL
+  exit
+fi
 
 # parse suffix from suffix=value
 IFS='=' read -ra suffix_flag <<< "$suffix_flag"
