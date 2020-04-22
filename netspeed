@@ -7,7 +7,7 @@ done
 
 # Give any argument for logging upload speed also.
 
-if [ $1 ]; then
+if [ $# ]; then
     echo $(date) > $HOME/upspeed
     for((i=0;i<10;i++));do
         command -v speedtest && speedtest --no-download |grep ^Upload |tee $HOME/upspeed
