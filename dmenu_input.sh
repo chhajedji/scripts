@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Terminal used to display: URxvt.
+# Default terminal: URxvt.
 # Usage
 # dmenu_input.sh -d: Do a dictionary search using dmenu.
 # dmneu_input.sh -m: Search for a manpage.
@@ -10,6 +10,7 @@ DMENU_FONT1="Inconsolata 12"
 
 # If "BROWSER" unset globally, set locally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
+[ -n "$TERMINAL" ] || TERMINAL="urxvt"
 
 case $1 in
 
@@ -17,7 +18,7 @@ case $1 in
     -d)
         WORD=$(cat /usr/share/dict/words | dmenu -i -l 20 -p "Find meaning of:" -fn "$DMENU_FONT1")
         if [ -n "$WORD" ]; then
-            urxvt -name dropdown_dictionary -e sh -c "dict ${WORD} |less"
+            $TERMINAL -name dropdown_dictionary -e sh -c "dict ${WORD} |less"
         fi
         ;;
 
@@ -41,14 +42,14 @@ case $1 in
         WORD=$(cat /tmp/manlist.txt | dmenu -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | cut -d ' ' -f 1)
         echo $WORD
         if [ -n "$WORD" ]; then
-            urxvt -name dropdown_manual -e sh -c "man ${WORD} || figlet -c 'No manual entry for \"${WORD}\"' |less" >/dev/null
+            $TERMINAL -name dropdown_manual -e sh -c "man ${WORD} || figlet -c 'No manual entry for \"${WORD}\"' |less" >/dev/null
             # exec i3-msg [instance="dropdown_manual"] focus >/dev/null
         fi
         ;;
 
     *)
         MESSAGE="Not a valid option to run. :P"
-        urxvt -name dropdown_default -e sh -c "figlet -c ${MESSAGE} |less" >/dev/null
+        $TERMINAL -name dropdown_default -e sh -c "figlet -c ${MESSAGE} |less" >/dev/null
         ;;
 
 esac
