@@ -226,9 +226,11 @@
 
 - Functionality
     - Take screenshots of area, whole screen and current window.
+    - Save in given `$DESTINATION` and copy to clipboard.
 
 - Dependency
     - `scrot`
+    - `xclip`
 
 #### [startpy3](startpy3.sh)
 
