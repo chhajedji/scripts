@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Terminal used to display: URxvt.
+# Usage
+# dmenu_input.sh -d: Do a dictionary search using dmenu.
+# dmneu_input.sh -m: Search for a manpage.
+# dmneu_input.sh -g: Do a google search in firefox.
+
 DMENU_FONT1="Inconsolata 12"
 
 # If "BROWSER" unset globally, set locally.
