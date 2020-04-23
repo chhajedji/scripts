@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mkdir -p $HOME/Pictures/screenshots/
-DESTINATION="$HOME/Pictures/screenshots/%Y-%m-%d-%T.png"
+DESTINATION="$HOME/Pictures/screenshots/"
 
 # Sleep command is necessary for scrot to work from keybinding. Because of
 # `sleep`, user gets time to release keyboard resource. If sleep is not there,
@@ -12,20 +12,25 @@ case $1 in
 
 # Area select.
     -s)
-        scrot --select "$DESTINATION"
+        scrot --select "$DESTINATION%Y-%m-%d-%T.png"
         ;;
 
 # Window select.
     -w)
-        scrot --focused --border "$DESTINATION"
+        scrot --focused --border "$DESTINATION%Y-%m-%d-%T.png"
         ;;
 
 # Default is full screen.
     *)
-        scrot "$DESTINATION"
+        scrot "$DESTINATION%Y-%m-%d-%T.png"
         ;;
 
-esac && notify-send "
+esac &&
+    {
+        SSNAME="$(ls -t $DESTINATION |head -n1)";
+        xclip -in -selection clipboard -target image/png "$DESTINATION$SSNAME"
+    } &&
+        notify-send "
 $(ls -t $HOME/Pictures/screenshots/ |head -n1)
-Screenshot saved "
+Screenshot saved and copied to clipboard. "
 
