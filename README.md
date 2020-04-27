@@ -15,6 +15,7 @@
 
 - Functionality
     - Put all your applications which needed to run after startup in this script. Applications like wallpaper, notification manager, clipboard manager, network manager etc.
+    - It will also select if HDMI is connected and set monitors for dual display using [monitor_config.sh](#monitor_config.sh).
 
 - Dependencies
     - parcellite: Clipboard manager.
@@ -68,10 +69,11 @@
     - `dmenu`
     - A terminal emulator.
 
-#### [duplicate_monitor](duplicate_monitor.sh)
+#### [monitor_config](monitor_config.sh)
 
 - Functionality
-    - Setup for mirroring on 2 screens.
+    - Multiple screens setup for single, dual or duplicate screens.
+    - Default is single monitor. See [autostart.sh](autostart.sh) which selects what to do.
 
 - Dependency
     - `xrandr`
@@ -152,14 +154,6 @@
 
 - Dependency
     - `gcc`
-
-#### [one_monitor](one_monitor.sh)
-
-- Functionality
-    - Configure display for single screen.
-
-- Dependency
-    - `xrandr`
 
 #### [pic_lock_exec](pic_lock_exec.sh)
 
@@ -273,14 +267,6 @@
 
 - Dependency
     - `compton`
-
-#### [two_monitor](two_monitor.sh)
-
-- Functionality
-    - Display setup for two screens.
-
-- Dependency
-    - `xrandr`
 
 #### [undistract-me](undistract-me.sh)
 
