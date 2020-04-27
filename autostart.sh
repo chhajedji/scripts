@@ -23,6 +23,9 @@ command -v dunst && killall -q notify-osd; dunst -config $HOME/.config/dunst/dun
 redshift -P -O 3700 &
 new_wall.sh &
 
+xrandr | grep 'HDMI2 disconnected' && monitor_config.sh -one
+xrandr | grep 'HDMI2 connected' && monitor_config.sh -two
+
 xrdb -merge $HOME/.Xresources
 
 # 1. Check if dwm is current windown manager.
