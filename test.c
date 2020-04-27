@@ -627,14 +627,96 @@
  * }
  */
 
-#include "string.h"
-#define hi "hello"
+/*
+ * #include "string.h"
+ * #define hi "hello"
+ * 
+ * int main(void)
+ * {
+ *     const int aa = 5;
+ *     char *a = "hi";
+ *     char *b = "h";
+ *     const int c = strlen(b);
+ *         printf("%d\t%ld\n", strncmp(a, b, c), strlen(hi));
+ * }
+ */
 
-int main(void)
+/* #include "math.h" */
+/*
+ * char flip (char num, char bitmask, char pos)
+ * {
+ *     char newmask = 0;
+ *     if (bitmask == 0) {
+ *         newmask = ~newmask;
+ *         newmask = bitmask << pos;
+ *         return (num & newmask);
+ *     }
+ *     newmask = bitmask << pos;
+ *     return (num | newmask);
+ * }
+ * 
+ * char main(void)
+ * {
+ *     char ans = flip(0b11101000, 1, 4);
+ *     ans = 0b01010100;
+ *     printf("0b");
+ *     for (char i = 0; i < 8; i += 1) {
+ *         char word = 0b10000000;
+ *         printf("%d", word[> (ans & word) <]);
+ *         word >>= 1;
+ * }
+ *     printf("\n");
+ * }
+ */
+
+void mc(void *s, void *d, int size)
 {
-    const int aa = 5;
-    char *a = "hi";
-    char *b = "h";
-    const int c = strlen(b);
-        printf("%d\t%ld\n", strncmp(a, b, c), strlen(hi));
+    long long int *ns = (long long int *)s;
+    long long int *nd = (long long int *)d;
+    long int junk = sizeof(ns[0]);
+    int i = 0, rem_sz = size;
+    printf("rem_sz: %d\tjunk: %ld\n",rem_sz, junk);
+    while(rem_sz >= junk) {
+        printf("Inside while 1\n");
+        nd[i] = ns[i];
+        rem_sz -= junk;
+        i += 1;
+    printf("rem_sz: %d\n", rem_sz);
+    }
+    printf("i: %d\n", i);
+    if (rem_sz) {
+        printf("Inside if\n");
+        char *nns = (char *)ns[i];
+        char *nnd = (char *)nd[i];
+        int i = 0;
+        long int junk = sizeof(nns[0]);
+        printf("New junk: %ld\n", junk);
+        while(rem_sz) {
+        printf("Inside while 2\n");
+            printf("rem_sz: %d\tsizeof(nnd[0]): %ld\ti: %d\n", rem_sz, sizeof(nnd[0]), i);
+            nnd[i] = nns[i];
+            rem_sz -= junk;
+            i += 1;
+        }
+    }
+}
+
+#define SZ 25
+int main (void)
+{
+    long long int a[SZ];
+    for (char i = 0; i < SZ; i += 1) {
+        a[i] = i;
+    }
+    /* printf("a size: %ld\ta[0] size: %ld\n", sizeof(a), sizeof(a[0])); */
+    long long int b[SZ];
+    printf("b before: ");
+    for (char i =0; i < SZ; i += 1)
+        printf("%lld ", b[i]);
+    printf("\n");
+    mc(a, b, SZ);
+    printf("b after: ");
+    for (char i =0; i < SZ; i += 1)
+        printf("%lld ", b[i]);
+    printf("\n");
 }
