@@ -2,6 +2,8 @@
 
 - Scripts to implement some basic computer (mainly linux) functionalities and a bit complex stuff using some some external programs.
 - These are more handy when using a [tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager).
+
+> Most scripts are having an extension like `.sh` to avoid conflicts if a default command exists by that name (mostly unlikely). Also so that I know that this a script (mostly written by me) and not a command.
 ---
 
 #### [app_name](app_name.sh)
@@ -16,15 +18,16 @@
 - Functionality
     - Put all your applications which needed to run after startup in this script. Applications like wallpaper, notification manager, clipboard manager, network manager etc.
     - It will also select if HDMI is connected and set monitors for dual display using [monitor_config.sh](#monitor_config.sh).
+    - Applications listed in _Dependencies_ are one that I use. Most of them have a check that if they are installed.
 
 - Dependencies
-    - parcellite: Clipboard manager.
-    - nm-applet: Network manager.
-    - compton: Compositing manager.
-    - dunst: Notification manager.
-    - redshift: For adjusting screen temperature.
-    - new_wall: See [this](#new_wall).
-    - dwm: See [dwm](https://dwm.suckless.org/).
+    - `parcellite`: Clipboard manager.
+    - `nm-applet`: Network manager.
+    - `compton`: Compositing manager.
+    - `dunst`: Notification manager.
+    - `redshift`: For adjusting screen temperature.
+    - [monitor_config](#monitor_config).
+    - [new_wall](#new_wall).
 
 #### [blur_lock](blur_lock.sh)
 
