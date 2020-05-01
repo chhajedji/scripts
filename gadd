@@ -13,23 +13,25 @@ rm -rf $HOME/pnl/github/dot-files/T480/.[A-z]*
 # Remove all files in "scripts" submodule.
 rm -rf $HOME/pnl/github/dot-files/scripts/*
 
-cp -fr                  \
-$HOME/.scripts/*        \
-$HOME/pnl/github/dot-files/scripts
+mkdir -p $HOME/pnl/github/dot-files/T480/.local/share
 
+cp -fr                      \
+$HOME/.scripts/*            \
+$HOME/pnl/github/dot-files/scripts
 # Changed files at $HOME/.
-cp -fr              \
-$HOME/.vim          \
-$HOME/.bash         \
-$HOME/.fonts        \
-$HOME/.alias        \
-$HOME/.vimrc        \
-$HOME/.bashrc       \
-$HOME/.inputrc      \
-$HOME/.profile      \
-$HOME/.gitconfig    \
-$HOME/.Xresources   \
-$HOME/.bash_profile \
+cp -fr                      \
+$HOME/.vim                  \
+$HOME/.bash                 \
+$HOME/.fonts                \
+$HOME/.alias                \
+$HOME/.vimrc                \
+$HOME/.bashrc               \
+$HOME/.inputrc              \
+$HOME/.profile              \
+$HOME/.gitconfig            \
+$HOME/.Xresources           \
+$HOME/.bash_profile         \
+$HOME/.local/share/konsole  \
 $HOME/pnl/github/dot-files/T480/
 
 # Changed files in $HOME/.config/.
