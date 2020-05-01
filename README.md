@@ -198,7 +198,7 @@
 #### [samedirnoob](samedirnoob.sh)
 
 - Functionality
-    - Open new terminal in same directory as of previous terminal in a noob way!
+    - Open new terminal in same directory as of previous terminal in a more naive way.
 
 - Dependency
     - None
@@ -206,7 +206,8 @@
 #### [samedir](samedir.sh)
 
 - Functionality
-    - Same as [samedirnoob](#samedirnoob) but do it is a more professional way! ;)
+    - Same as [samedirnoob](#samedirnoob) but do it is an advanced way.
+    > Note this is not always accurate but has some other benefits.
 
 - Dependency
     - None
