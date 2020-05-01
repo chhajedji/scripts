@@ -55,8 +55,8 @@ do
 
 
 
-xsetroot -name "$(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
-# xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+# xsetroot -name "$(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
     sleep 2s
 
 done &
