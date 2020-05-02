@@ -89,7 +89,6 @@
 
 - Dependency
     - `amixer`
-    - `i3blocks`: to get bandwidth. /* TODO */ Needs to remove dependency on `i3blocks`.
 
 #### [focus_window](focus_window.sh)
 
@@ -120,7 +119,8 @@
 #### [i3blocks](i3blocks)
 
 - Functionality
-    - [default/](i3blocks/default) stores the default scripts when `i3blocks` are installed. These are same as scripts in `/usr/share/i3blocks/`.
+    - [default/](i3blocks/default) stores the default scripts when `i3blocks` is installed. These are same as scripts in `/usr/share/i3blocks/`.
+    - [custom/](i3blocks/custom) store scripts with little modifications of i3blocks [default](i3blocks/default) scripts. Some modifications made which are [dwmbar](#dwmbar) compatible.
 
 
 - Dependency
