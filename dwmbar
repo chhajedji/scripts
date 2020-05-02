@@ -19,7 +19,9 @@ do
 
     vol()
     {
-        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')"
+        amixer get Master | tail -1 | grep -w "on" >/dev/null &&
+        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
+        echo -n " MUTE"
     }
 
     cpu()
@@ -49,8 +51,7 @@ do
      bandwidth()
     {
         # i3bar script.
-        # TODO: Remove dependancy on this script.
-        echo -n "$(/usr/share/i3blocks/bandwidth)"
+        $HOME/.scripts/i3blocks/custom/bandwidth
     }
 
 
