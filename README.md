@@ -17,6 +17,7 @@
 
 - Functionality
     - Put all your applications which needed to run after startup in this script. Applications like wallpaper, notification manager, clipboard manager, network manager etc.
+    - Check if application is already running, if not then start it.
     - It will also select if HDMI is connected and set monitors for dual display using [monitor_config.sh](#monitor_config.sh).
     - Applications listed in _Dependencies_ are one that I use. Most of them have a check that if they are installed.
 
