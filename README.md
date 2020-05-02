@@ -117,6 +117,15 @@
 - Dependency
     - `git`
 
+#### [i3blocks](i3blocks)
+
+- Functionality
+    - [default/](i3blocks/default) stores the default scripts when `i3blocks` are installed. These are same as scripts in `/usr/share/i3blocks/`.
+
+
+- Dependency
+    - None
+
 #### [long-running](long-running.bash)
 
 - Functionality
