@@ -7,18 +7,13 @@ cd $HOME/pnl/github/dot-files/
 
 git checkout T480 >/dev/null
 
-# Remove all hidden files.
-rm -rf $HOME/pnl/github/dot-files/T480/.[A-z]*
+# Remove all files in T480/.
+rm -rf $HOME/pnl/github/dot-files/T480
 
-# Remove all files in "scripts" submodule.
-rm -rf $HOME/pnl/github/dot-files/scripts/*
+# Create longest directory so that all parent directories will be auto-created.
 
-mkdir -p $HOME/pnl/github/dot-files/T480/.local/share
-
-cp -fr                      \
-$HOME/.scripts/*            \
-$HOME/pnl/github/dot-files/scripts
-# Changed files at $HOME/.
+mkdir -p $HOME/pnl/github/dot-files/T480/
+# Copy changed files at $HOME/.
 cp -fr                      \
 $HOME/.vim                  \
 $HOME/.bash                 \
@@ -31,10 +26,14 @@ $HOME/.profile              \
 $HOME/.gitconfig            \
 $HOME/.Xresources           \
 $HOME/.bash_profile         \
-$HOME/.local/share/konsole  \
 $HOME/pnl/github/dot-files/T480/
 
-# Changed files in $HOME/.config/.
+# Copy files at $HOME/.local/share.
+mkdir -p $HOME/pnl/github/dot-files/T480/.local/share
+cp -rf $HOME/.local/share/konsole   \
+$HOME/pnl/github/dot-files/T480/.local/share
+
+# Copy changed files at $HOME/.config/.
 mkdir -p $HOME/pnl/github/dot-files/T480/.config/
 cp -fr                      \
 $HOME/.config/i3            \
@@ -42,5 +41,22 @@ $HOME/.config/dunst         \
 $HOME/.config/compton       \
 $HOME/.config/gsimplecal    \
 $HOME/pnl/github/dot-files/T480/.config/
+
+# Keep a single copy of git specific files like README by saving them and
+# retrieving them later after deleting.
+mkdir -p /tmp/scriptFiles/
+mv $HOME/pnl/github/dot-files/scripts/README.md         \
+$HOME/pnl/github/dot-files/scripts/img_blur_lock.png    \
+/tmp/scriptFiles/
+
+# Remove all files in "scripts" submodule.
+rm -rf $HOME/pnl/github/dot-files/scripts/*
+
+mv /tmp/scriptFiles/*   \
+$HOME/pnl/github/dot-files/scripts/
+
+cp -fr                      \
+$HOME/.scripts/*            \
+$HOME/pnl/github/dot-files/scripts
 
 git status
