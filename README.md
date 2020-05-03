@@ -163,7 +163,9 @@
 #### [o](o)
 
 - Functionality
-    - Compile given c program with `gcc` and run it.
+    - Compile given c program with `gcc` and run it. Could be helpful when running simple _C_ programs for testing _C_ functionalities, competitive programming etc.
+    - Add this script in `PATH` for easy usage.
+    - Just run this as `o` (if added in `PATH`) and compile and run last edited _C_ file or give name of _C_ file to be compiled and run.
 
 - Dependency
     - `gcc`

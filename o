@@ -1,2 +1,10 @@
 #! /bin/sh
-gcc "$1" -o ioawehfads && ./ioawehfads; rm ioawehfads 2>/dev/null
+
+# Compile and run given input C/C++ file or if no input is given, then last
+# edited file.
+
+[ "$1" ] && { gcc "$1" -o ioawehfads && ./ioawehfads; rm ioawehfads 2>/dev/null; } ||
+    { IN="$(ls -t |head -n1 | grep '.c')"  &&
+        echo "Compiled and running \"$IN\"." &&
+        gcc "$IN" -o ioawehfads && ./ioawehfads; rm ioawehfads 2>/dev/null; } ||
+        { echo "Last edited file, \"$(ls -t |head -n1)\" is not a C file."; }
