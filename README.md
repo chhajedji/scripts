@@ -197,6 +197,15 @@
 - Dependency
     - None
 
+#### [restartbar](restartbar.sh)
+
+- Functionality
+    - Checks if there is any instance of "dwmbar" running.
+    - If found exactly one, then kill `sleep` inside it.
+    - If any instance other than one (zero, two etc.) is running, kill all instances and start a new one.
+
+- Dependency
+    - [dwmbar](#dwmbar).
 
 #### [run](run.sh)
 
