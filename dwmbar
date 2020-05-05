@@ -3,6 +3,15 @@
 while true
 do
 
+    lockind()
+    {
+        CAPSLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Caps Lock: *\([a-z]\{2,3\}\).*/\1/')"
+        NUMBLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Num Lock: *\([a-z]\{2,3\}\).*/\1/')"
+        [ "$CAPSLOCK" = "off" ] && CAPSLOCK="a" || CAPSLOCK="A"
+        [ "$NUMLOCK" = "off" ] && NUMLOCK="8" || NUMLOCK="0"
+        echo -n "$CAPSLOCK  $NUMLOCK"
+    }
+
     battery()
     {
         STATCHAR="[$(cat /sys/class/power_supply/BAT1/status | colrm 2 99)]"
@@ -57,7 +66,7 @@ do
 
 
 # xsetroot -name "$(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
-xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
+xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)  |  $(lockind)"
     sleep 2s
 
 done &
