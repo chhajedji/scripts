@@ -268,6 +268,14 @@
 - Dependency
     - None
 
+#### [touchpad](touchpad.sh)
+
+- Functionality
+    - Toggle touchpad with inbuilt keyboard button (if present).
+
+- Dependency
+    - `synclient`
+
 #### [trans_dec](trans_dec.sh)
 
 - Functionality
