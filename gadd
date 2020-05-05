@@ -30,7 +30,9 @@ $HOME/pnl/github/dot-files/T480/
 
 # Copy files at $HOME/.local/share.
 mkdir -p $HOME/pnl/github/dot-files/T480/.local/share
-cp -rf $HOME/.local/share/konsole   \
+cp -rf                          \
+$HOME/.local/share/konsole      \
+$HOME/.local/share/supplements  \
 $HOME/pnl/github/dot-files/T480/.local/share
 
 # Copy changed files at $HOME/.config/.
