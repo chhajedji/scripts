@@ -22,7 +22,7 @@ case $1 in
         pactl set-source-mute 1 toggle
         ;;
 
-esac && paplay $HOME/.config/i3/other_files/volume_change.ogg
+esac && paplay $HOME/.local/share/supplements/volume_change.ogg
 
 # Get count of "dwmbar" processes running. If count is 1 then kill sleep
 # subprocess within it. If count is more than 1, kill all instances (if any)
