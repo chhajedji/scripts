@@ -6,9 +6,9 @@ do
     lockind()
     {
         CAPSLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Caps Lock: *\([a-z]\{2,3\}\).*/\1/')"
-        NUMBLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Num Lock: *\([a-z]\{2,3\}\).*/\1/')"
+        NUMLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Num Lock: *\([a-z]\{2,3\}\).*/\1/')"
         [ "$CAPSLOCK" = "off" ] && CAPSLOCK="a" || CAPSLOCK="A"
-        [ "$NUMLOCK" = "off" ] && NUMLOCK="8" || NUMLOCK="0"
+        [ "$NUMLOCK" = "off" ] && NUMLOCK="-" || NUMLOCK=""
         echo -n "$CAPSLOCK  $NUMLOCK"
     }
 
@@ -49,7 +49,7 @@ do
 
     temp()
     {
-        echo -n " $(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
+        echo -n " $(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
     }
 
     datetime()
@@ -64,9 +64,7 @@ do
     }
 
 
-
-# xsetroot -name "$(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)"
-xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)  »  $(cpu)  «  $(temp)  |  $(datetime)  |  $(lockind)"
+xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)    $(cpu)    $(temp)  |  $(datetime)  |  $(lockind)"
     sleep 2s
 
 done &
