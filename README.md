@@ -90,6 +90,14 @@
 - Dependency
     - `amixer`
 
+#### [filecopy](filecopy.sh)
+
+- Functionality
+    - Copy a file to clipboard from terminal and paste it somewhere other than terminal with `Ctrl-v`.
+
+- Dependency
+    - `xclip`
+
 #### [focus_window](focus_window.sh)
 
 - Functionality
