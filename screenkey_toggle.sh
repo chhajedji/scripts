@@ -38,4 +38,4 @@
 #   --compr-cnt COUNT     Compress key repeats after the specified count
 #   --version             show program's version number and exit
 
-pgrep -x screenkey && pkill screenkey || screenkey -s small -t 1 --opacity 0.7 --bak-mode baked --vis-shift --scr 1
+pgrep -x screenkey && pkill screenkey || screenkey --font-size small --timeout 1 --font "Monospace" --font-color "#ff0000" --opacity 0.7 --bak-mode baked --vis-shift --scr 1

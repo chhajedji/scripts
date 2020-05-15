@@ -43,6 +43,7 @@
     - `xrandr`
     - `ffmpeg`
     - `i3lock`
+    - [lock2.png](https://github.com/chhajedji/dot-files/blob/master/T480/.local/share/supplements/lock2.png) stored at `$HOME/.local/share/supplemets/lock2.png`.
 
 #### [brightness_change](brightness_change.sh)
 
@@ -167,6 +168,7 @@
 
 - Dependency
     - `paplay`
+    - [alert.ogg](https://github.com/chhajedji/dot-files/blob/master/T480/.local/share/supplements/alert.ogg) stored at `$HOME/.local/share/supplemets/alert.ogg`.
 
 #### [o](o)
 
@@ -328,6 +330,7 @@
 - Dependency
     - `pactl`
     - [dwmbar](#dwmbar)
+    - [volume_change.ogg](https://github.com/chhajedji/dot-files/blob/master/T480/.local/share/supplements/volume_change.ogg) stored at `$HOME/.local/share/supplemets/volume_change.ogg`.
 
 #### [wifi_toggle](wifi_toggle.sh)
 
