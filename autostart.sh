@@ -23,6 +23,11 @@ command -v dunst && { pgrep dunst || { killall -q notify-osd; dunst -config $HOM
 redshift -P -O 3700 &
 new_wall.sh &
 
+# If has emacs, search if daemon is already running. If not then start
+# an emacs daemon.
+type emacs && { [ "$(ps aux | grep 'emacs --daemon' | wc -l)" = "2" ] ||
+		    emacs --daemon; }
+
 xrandr | grep 'HDMI2 disconnected' && monitor_config.sh -one
 xrandr | grep 'HDMI2 connected' && monitor_config.sh -two
 
