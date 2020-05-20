@@ -21,8 +21,8 @@ if [ $1 ]; then
         cwd=$PWD
         mkdir -p $HOME/.cstags_dir/$target_dir
         cd $HOME/.cstags_dir/$target_dir
-        find $cwd -name '*.c' -o -name '*.h' > files.cscope
-        cscope -bi files.cscope
+        find $cwd -name '*.c' -o -name '*.h' > cscope.files
+        cscope -bi cscope.files
         ctags -R $cwd
         cd $STARTDIR
     done
@@ -31,7 +31,7 @@ else
     cwd=$PWD
     mkdir -p $HOME/.cstags_dir/$target_dir
     cd $HOME/.cstags_dir/$target_dir
-    find $cwd -name '*.c' -o -name '*.h' > files.cscope
-    cscope -bi files.cscope
+    find $cwd -name '*.c' -o -name '*.h' > cscope.files
+    cscope -bi cscope.files
     ctags -R $cwd
 fi
