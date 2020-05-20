@@ -5,4 +5,4 @@
 
 
 # Change to saved working dir
-[[ -f "/tmp/cwd" ]] && cd "$(< /tmp/cwd)" && $TERMINAL
+[[ -f "/tmp/cwd" ]] && cd "$(< /tmp/cwd)" && $TERMINAL || $TERMINAL
