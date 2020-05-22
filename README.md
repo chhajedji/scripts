@@ -74,6 +74,17 @@
     - `dmenu`
     - A terminal emulator.
 
+#### [editor](editor.sh)
+
+- Functionality
+    - Shortcut to open editor.
+	- Prefered editor is `emacs`. If not installed then open in `vi`.
+
+- Dependency
+    - `emacs` (optional).
+	- `Vi`.
+	- `urxvt` (If globally `TERMINAL` is not set to open vi).
+
 #### [monitor_config](monitor_config.sh)
 
 - Functionality
