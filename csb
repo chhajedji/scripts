@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Build and move cscope and ctags database to $HOME/.cstags_dir/
+# Build and move cscope and etags (or ctags) database to $HOME/.cstags_dir/
 #
 # Always use `set nocscoperelative` in vim as this script changes path of cscope
 # database and absolute path is needed.
@@ -23,7 +23,7 @@ if [ $1 ]; then
         cd $HOME/.cstags_dir/$target_dir
         find $cwd -name '*.c' -o -name '*.h' > cscope.files
         cscope -bi cscope.files
-        ctags -R $cwd
+        ctags -e -R $cwd
         cd $STARTDIR
     done
 else
@@ -33,5 +33,5 @@ else
     cd $HOME/.cstags_dir/$target_dir
     find $cwd -name '*.c' -o -name '*.h' > cscope.files
     cscope -bi cscope.files
-    ctags -R $cwd
+    ctags -e -R $cwd
 fi
