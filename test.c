@@ -733,15 +733,25 @@
  *     printf("%d\n", hi.a);
  * }
  */
-struct s {
-    unsigned int a;
-    unsigned int b;
-};
 
+// struct s {
+//     unsigned int a;
+//     unsigned int b;
+// };
+// 
+// int main(void)
+// {
+//     int *asdf=NULL;
+//     struct s hello;
+//     hello/* comment */.a = 2;
+//     printf("%d\n", hello.a);
+// }
+
+typedef struct {
+  int *a;
+  int b;
+} foo;
 int main(void)
 {
-    int *asdf=NULL;
-    struct s hello;
-    hello/* comment */.a = 2;
-    printf("%d\n", hello.a);
+  foo c;
 }
