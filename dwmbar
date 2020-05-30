@@ -1,5 +1,7 @@
 #!/bin/sh
 
+SLEEPTIME="2"
+
 while true
 do
 
@@ -59,12 +61,33 @@ do
 
      bandwidth()
     {
-        # i3bar script.
-        $HOME/.scripts/i3blocks/custom/bandwidth
+
+        # Get tx and rx data from all interfaces.
+        PREVRX=$(($(cat /tmp/rxdata)))
+        PREVTX=$(($(cat /tmp/txdata)))
+        RXBYTES=$(($(cat /sys/class/net/*/statistics/rx_bytes | paste -sd '+' | tee /tmp/rxdata)))
+        TXBYTES=$(($(cat /sys/class/net/*/statistics/tx_bytes | paste -sd '+' | tee /tmp/txdata)))
+        RXSPEED=$((($RXBYTES-$PREVRX)/1024))
+        TXSPEED=$((($TXBYTES-$PREVTX)/1024))
+
+        if [ $RXSPEED -gt $(($SLEEPTIME*1024)) ]; then
+            RXSPEED="$(echo "scale=1; ($RXSPEED/($SLEEPTIME*1024))" | bc)M"
+        else
+            RXSPEED="$(($RXSPEED/$SLEEPTIME))"K
+        fi
+        j
+        if [ $TXSPEED -gt $(($SLEEPTIME*1024)) ]; then
+            TXSPEED="$(echo "scale=1; ($TXSPEED/($SLEEPTIME*1024))" | bc)M"
+        else
+            TXSPEED="$(($TXSPEED/$SLEEPTIME))"K
+        fi
+
+        echo -n " $RXSPEED   $TXSPEED"
+
     }
 
 
 xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)    $(cpu)    $(temp)  |  $(datetime)  |  $(lockind)"
-    sleep 2s
+    sleep "$SLEEPTIME"s
 
 done &
