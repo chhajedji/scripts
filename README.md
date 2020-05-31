@@ -66,13 +66,18 @@
 #### [dmenu_input](dmenu_input.sh)
 
 - Functionality
-    - Used to search web, search in dictionary or man page. For details see inside [dmenu_input.sh](dmenu_input.sh).
+    - This script includes many functionalities which can be used with `dmenu`.
+    - Do a web search or go to a URL.
+    - Search for manual pages.
+    - Search for words in dictionary.
+    - Go to git repos in your system.
+    - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
-    - `firefox`
+    - `firefox` (If globally environmental variable `BROWSER` is unset)
     - `dict` and `dictd`: For command line dictionary.
     - `dmenu`
-    - A terminal emulator.
+    - `urxvt` (If globally environmental variable `TERMINAL` is unset).
 
 #### [editor](editor.sh)
 
@@ -83,7 +88,7 @@
 - Dependency
     - `emacs` (optional).
 	- `Vi`.
-	- `urxvt` (If globally `TERMINAL` is not set to open vi).
+	- `urxvt` (If globally `TERMINAL` is not set).
 
 #### [monitor_config](monitor_config.sh)
 
@@ -98,6 +103,7 @@
 
 - Functionality
     - Display status bar with `xsetroot` when using dwm.
+    - Find my dwm built _[here](https://github.com/chhajedji/dwm)_.
 
 - Dependency
     - `amixer`
