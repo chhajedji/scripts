@@ -5,6 +5,7 @@
 # dmenu_input.sh -d: Do a dictionary search using dmenu.
 # dmneu_input.sh -m: Search for a manpage.
 # dmneu_input.sh -g: Do a google search in firefox.
+# dmneu_input.sh -r: Open a git repo stored anywhere after `$HOME'.
 
 DMENU_FONT1="Inconsolata 12"
 
@@ -33,6 +34,18 @@ case $1 in
                 (echo $QUERY | grep '\.' >/dev/null && $BROWSER "${GOTOURL}${QUERY}" && echo case 2) ||
                 ($BROWSER "${SEARCHURL}${QUERY}" && echo case 3)
         fi
+        ;;
+
+# Open terminal in a git repo.
+    -r)
+        # Display all the git repos in `$HOME'.
+        REPOS="$(find ~/ -name *.git 2>/dev/null | xargs dirname  | sed s:/home/$USER:~: | dmenu -i -l 20 -p 'Select git repo to open' -fn '$DMENU_FONT1')"
+
+        # Cut the '~/' part from the `REPOS'.
+        REPOS="$(echo $REPOS | cut -d '/' -f2-)"
+
+        # If user selected any repo then open `$TERMINAL' in that repo.
+        [ "$REPOS" = "" ] || { cd $HOME/$REPOS && $TERMINAL; } &
         ;;
 
 # Manual page.
