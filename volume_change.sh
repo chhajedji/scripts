@@ -1,5 +1,8 @@
 #!/bin/sh
 
+amixer get Master | tail -1 | grep -w '\[on\]' >/dev/null &&
+    STATE="on" || STATE="off"
+
 case $1 in
 
 # Toggle Mute.
@@ -9,11 +12,13 @@ case $1 in
 
 # Increase volume
     -i)
+    [ "$STATE" = "off" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle
         pactl set-sink-volume @DEFAULT_SINK@ +5%
         ;;
 
 # Decrease volume.
     -d)
+    [ "$STATE" = "off" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle
         pactl set-sink-volume @DEFAULT_SINK@ -5%
     ;;
 
