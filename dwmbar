@@ -31,8 +31,8 @@ do
     vol()
     {
         amixer get Master | tail -1 | grep -w "on" >/dev/null &&
-        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
-        echo -n " MUTE"
+        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
+        echo -n " MUTE"
     }
 
     cpu()
@@ -63,8 +63,8 @@ do
     {
 
         # Get tx and rx data from all interfaces.
-        PREVRX=$(($(cat /tmp/rxdata)))
-        PREVTX=$(($(cat /tmp/txdata)))
+        [ -f /tmp/rxdata ] && PREVRX=$(($(cat /tmp/rxdata))) || PREVRX=0
+        [ -f /tmp/txdata ] && PREVTX=$(($(cat /tmp/txdata))) || PREVTX=0
         RXBYTES=$(($(cat /sys/class/net/*/statistics/rx_bytes | paste -sd '+' | tee /tmp/rxdata)))
         TXBYTES=$(($(cat /sys/class/net/*/statistics/tx_bytes | paste -sd '+' | tee /tmp/txdata)))
         RXSPEED=$((($RXBYTES-$PREVRX)/1024))
@@ -75,7 +75,6 @@ do
         else
             RXSPEED="$(($RXSPEED/$SLEEPTIME))"K
         fi
-        j
         if [ $TXSPEED -gt $(($SLEEPTIME*1024)) ]; then
             TXSPEED="$(echo "scale=1; ($TXSPEED/($SLEEPTIME*1024))" | bc)M"
         else
