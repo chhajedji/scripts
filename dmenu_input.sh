@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Default terminal: URxvt.
+# If environmental variable `TERMINAL' is not set, then default terminal used: URxvt.
+
 # Usage
 # dmenu_input.sh -d: Do a dictionary search using dmenu.
 # dmneu_input.sh -m: Search for a manpage.
@@ -39,7 +40,7 @@ case $1 in
 # Open terminal in a git repo.
     -r)
         # Display all the git repos in `$HOME'.
-        REPOS="$(find ~/ -name *.git 2>/dev/null | xargs dirname  | sed s:/home/$USER:~: | dmenu -i -l 20 -p 'Select git repo to open' -fn '$DMENU_FONT1')"
+        REPOS="$(locate -r '/home/'$USER'.*\.git$' | xargs dirname  | sed s:/home/$USER:~: | dmenu -i -l 20 -p 'Select git repo to open' -fn '$DMENU_FONT1')"
 
         # Cut the '~/' part from the `REPOS'.
         REPOS="$(echo $REPOS | cut -d '/' -f2-)"
