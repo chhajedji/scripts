@@ -2,7 +2,12 @@
 
 # Pre-requisites: `speedtest'
 
-CYCLES=10
+# Usage:
+# `netspeed CYCLES[number of tests]' [anything for upload][optional].
+
+CYCLES=$1
+
+rm $HOME/upspeed 2>/dev/null
 
 echo $(date) > $HOME/downspeed
 echo '' >> $HOME/downspeed
@@ -13,20 +18,24 @@ done
 
 # Update number of cycles based on results. This might be less than or equal to
 # `CYCLES' defined earlier.
-CYCLES=$(cat $HOME/downspeed | grep "^Download: [0-9.]\{1,4\}" | wc -l)
+ROUNDS=$(cat $HOME/downspeed | grep "^Download: [0-9.]\{1,4\}" | wc -l)
 
 # Calculating average download speed.
 echo "" >> $HOME/downspeed
-echo -n "Average download speed in Mbps for $CYCLES cycle is " >> $HOME/downspeed
-echo "scale=2; (($(cat $HOME/downspeed | sed 's/.* \([0-9]*\.[0-9]*\) .*/\1/p' -n | paste -sd '+'))/$CYCLES)" | bc >> $HOME/downspeed
+echo -n "Average download speed in Mbps for $ROUNDS cycle is " >> $HOME/downspeed
+echo "scale=2; (($(cat $HOME/downspeed | sed 's/.* \([0-9]*\.[0-9]*\) .*/\1/p' -n | paste -sd '+'))/$ROUNDS)" | bc >> $HOME/downspeed
+
+notify-send "Download speed results.
+
+$(cat $HOME/downspeed)"
 
 
 
 # Follow same procedure used above for upload speed also.
 
 
-# Give any argument for logging upload speed also.
-if [ $# -ne 0 ]; then
+# Give any argument after number of cycles to log upload speed.
+if [ $2 ]; then
     echo $(date) > $HOME/upspeed
     echo '' >> $HOME/upspeed
     for((i=0;i<$CYCLES;i++));do
@@ -35,9 +44,13 @@ if [ $# -ne 0 ]; then
 
 # Update number of cycles based on results. This might be less than or equal to
 # `CYCLES' defined earlier.
-CYCLES=$(cat $HOME/upspeed | grep "^Upload: [0-9.]\{1,4\}" | wc -l)
+    ROUNDS=$(cat $HOME/upspeed | grep "^Upload: [0-9.]\{1,4\}" | wc -l)
 
     echo "" >> $HOME/upspeed
-    echo -n "Average upload speed in Mbps for $CYCLES cycle is " >> $HOME/upspeed
-    echo "scale=2; (($(cat $HOME/upspeed | sed 's/.* \([0-9]*\.[0-9]*\) .*/\1/p' -n | paste -sd '+'))/$CYCLES)" | bc >> $HOME/upspeed
+    echo -n "Average upload speed in Mbps for $ROUNDS cycle is " >> $HOME/upspeed
+    echo "scale=2; (($(cat $HOME/upspeed | sed 's/.* \([0-9]*\.[0-9]*\) .*/\1/p' -n | paste -sd '+'))/$ROUNDS)" | bc >> $HOME/upspeed
+    notify-send "Upload speed results.
+
+    $(cat $HOME/upspeed)"
+
 fi

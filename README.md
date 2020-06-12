@@ -167,7 +167,7 @@
 
 - Functionality
     - Check internet speed and save results in `$HOME/`.
-    - Modify `CYCLES` to change number of iterations for doing speed test.
+    - First argument: Number of tests to perform. Second argument is optional to do upload speedtest also. Give anything as second argument.
     - This script will create file `downspeed` (and `upspeed` if any argument is present) and log start time, results for every iteration and average speed in it.
 
 - Dependency
