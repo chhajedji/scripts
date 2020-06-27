@@ -6,6 +6,8 @@
 # `netspeed CYCLES[number of tests]' [anything for upload][optional].
 
 CYCLES=$1
+# Default is 5 cycles
+[ -n "$CYCLES" ] || CYCLES=5
 
 rm $HOME/upspeed 2>/dev/null
 
