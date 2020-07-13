@@ -1,2 +1,3 @@
-run.sh
 /* Test script for fast testing. */
+run.sh
+test.c
