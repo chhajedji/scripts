@@ -299,14 +299,6 @@
 - Dependency
     - `i3lock`
 
-#### [test](test.c)
-
-- Functionality
-    - C file used to test/verify some basics of C language. Not used by system anywhere.
-
-- Dependency
-    - None
-
 #### [touchpad](touchpad.sh)
 
 - Functionality
