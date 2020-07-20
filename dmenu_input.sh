@@ -7,8 +7,10 @@
 # dmneu_input.sh -m: Search for a manpage.
 # dmneu_input.sh -g: Do a google search in firefox.
 # dmneu_input.sh -r: Open a git repo stored in `$HOME'.
-# dmenu_input,sh -f: Open a terminal is a directory. Similar to fuzzy
+# dmenu_input.sh -f: Open a terminal is a directory. Similar to fuzzy
 #                    finder through dmenu but for directory instead of files.
+# dmenu_input.sh -l: Normal application launcher using dmenu. Runs
+#					 basic `dmenu_run' command.
 
 DMENU_FONT1="Inconsolata 12"
 
@@ -42,6 +44,10 @@ case $1 in
         fi
         ;;
 
+# Basic `dmenu_run' to launch applications/run commands.
+    -l)
+        dmenu_run -p "Run command:" -fn "$DMENU_FONT1"
+        ;;
 
 # Search google or open a URL.
     -g)
