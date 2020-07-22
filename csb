@@ -25,6 +25,7 @@ if [ $1 ]; then
         cscope -bi cscope.files
         ctags -e -R $cwd
         cd $STARTDIR
+        echo "Ran \`csb' for $target_dir."
     done
 else
     target_dir="`basename $PWD`"
@@ -34,4 +35,5 @@ else
     find $cwd -name '*.c' -o -name '*.h' > cscope.files
     cscope -bi cscope.files
     ctags -e -R $cwd
+    echo "Ran \`csb' for $(basename $PWD)."
 fi

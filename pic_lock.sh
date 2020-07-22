@@ -85,3 +85,4 @@ eval convert $OUTPUT_IMG $PARAMS $OUTPUT_IMG
 
 #Lock the screen:
 $LOCK_CMD
+echo "Locking screen with \`i3lock'."

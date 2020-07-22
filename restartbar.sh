@@ -5,3 +5,4 @@
 # and start a new process.
 
 { [ $(pgrep -c dwmbar) = "1" ] && pkill -P $(pgrep dwmbar) sleep; } || { pkill dwmbar; dwmbar; }
+echo "Restarting dwmbar.."

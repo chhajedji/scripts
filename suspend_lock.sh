@@ -4,5 +4,6 @@
 xset dpms 8
 # Suspend and lock. See option `-n` 
 systemctl suspend && i3lock -c "#222222" -n
+echo "Suspending system and locking with \`i3lock.'"
 # After unlocking, set screentimeout to 600 s.
 xset dpms 600

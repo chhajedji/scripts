@@ -7,7 +7,7 @@
 
 CYCLES=$1
 # Default is 5 cycles
-[ -n "$CYCLES" ] || CYCLES=5
+[ -n "$CYCLES" ] || CYCLES=2
 
 rm $HOME/upspeed 2>/dev/null
 
