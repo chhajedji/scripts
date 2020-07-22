@@ -5,4 +5,5 @@
 
 
 # Change to saved working dir
+echo "Opening terminal."
 [[ -f "/tmp/cwd" ]] && cd "$(< /tmp/cwd)" && $TERMINAL || $TERMINAL

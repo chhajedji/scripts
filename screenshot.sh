@@ -32,5 +32,7 @@ esac &&
     } &&
         notify-send "
 $(ls -t $HOME/Pictures/screenshots/ |head -n1)
-Screenshot saved and copied to clipboard. "
+Screenshot saved and copied to clipboard. " &&
+        echo "$(ls -t $HOME/Pictures/screenshots/ |head -n1)
+Screenshot saved and copied to clipboard."
 

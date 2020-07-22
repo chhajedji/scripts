@@ -34,5 +34,5 @@ then
             ;;
     esac &
 else
-    $TERMINAL
-fi
+    $TERMINAL &
+fi echo "Opening $TERMINAL.."

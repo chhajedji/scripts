@@ -307,18 +307,10 @@
 - Dependency
     - `synclient`
 
-#### [trans_dec](trans_dec.sh)
+#### [trans_change](trans_change.sh)
 
 - Functionality
-    -Decrease transparency of current window using `compton`.
-
-- Dependency
-    - `compton`
-
-#### [trans_inc](trans_inc.sh)
-
-- Functionality
-    -Increase transparency of current window using `compton`.
+    - Change transparency of current window using `compton`.
 
 - Dependency
     - `compton`

@@ -6,8 +6,9 @@ LOCK=$HOME/.local/share/supplements/lock2.png
 RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
  
 ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $LOCK -filter_complex "boxblur=10:1,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
-xset dpms force off
 xset dpms 3
+xset dpms force off
+echo "Locking system with \`i3lock'"
 i3lock -efi $TMPBG -n
 xset dpms 600
 rm $TMPBG
