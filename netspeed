@@ -11,7 +11,8 @@ CYCLES=$1
 
 rm $HOME/upspeed 2>/dev/null
 
-echo $(date) > $HOME/downspeed
+echo "** Download Speed **" > $HOME/downspeed
+echo $(date) >> $HOME/downspeed
 echo '' >> $HOME/downspeed
 
 for((i=0;i<$CYCLES;i++));do
@@ -38,7 +39,9 @@ $(cat $HOME/downspeed)"
 
 # Give any argument after number of cycles to log upload speed.
 if [ $2 ]; then
-    echo $(date) > $HOME/upspeed
+
+    echo "** Upload Speed **" >> $HOME/upspeed
+    echo $(date) >> $HOME/upspeed
     echo '' >> $HOME/upspeed
     for((i=0;i<$CYCLES;i++));do
         command -v speedtest >/dev/null && speedtest --no-download |grep ^Upload |tee -a $HOME/upspeed
