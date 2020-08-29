@@ -11,7 +11,7 @@
 case "$1" in
 
     -e)
-	emacsclient -c || emacs
+	setsid emacsclient -c >/dev/null 2>&1 || emacs >/dev/null 2>&1
 	;;
 
     -v)
