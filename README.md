@@ -1,10 +1,25 @@
 ## Scripts
 
 - Scripts to implement some basic computer (mainly linux) functionalities and a bit complex stuff using some some external programs.
-- These are more handy when using a [tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager).
+- These are more handy when using a [tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager). As a raw build of most of the tiling window mangers lacks most of the basic bindings like to change volume, brightness, turn on/off mic etc.
+
+### How to use these?
+
+- Clone or download this repository.
+```sh
+git clone https://github.com/chhajedji/scripts.git ~/.scripts	# To clone in $HOME/.scripts
+```
+- Append your `PATH` with `$HOME/.scripts`. Do this by adding `export PATH="$PATH:$HOME/.scripts"` in your shell's config file or `$HOME/.profile`.
+
+```sh
+echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
+```
+- If you use a tiling window manager then add bindings in it's config files or for others DE's like Gnome, KDE, XFCE etc, check how can you modify keyboard shortcuts and add bindings for these scripts like you would run any normal command (`cd`, `mkdir`, etc).
 
 > Most scripts are having an extension like `.sh` to avoid conflicts if a default command exists by that name (mostly unlikely). Also so that I know that this a script (mostly written by me) and not a command.
 ---
+
+### Description
 
 #### [app_name](app_name.sh)
 
