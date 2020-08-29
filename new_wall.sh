@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo "Setting new wallpaper."
-feh --recursive --randomize --bg-scale "$HOME/Pictures/wallpapers/"
+feh --recursive --randomize $HOME/Pictures/wallpapers/* --bg-scale 
