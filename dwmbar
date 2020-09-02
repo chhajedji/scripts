@@ -42,7 +42,7 @@ do
 
     ram()
     {
-        FREE_DATA=$(free -m | grep Mem)
+        FREE_DATA=$(free -t | grep Total)
         CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
         TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
 
