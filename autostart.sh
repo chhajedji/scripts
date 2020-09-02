@@ -28,7 +28,7 @@ new_wall.sh &
 type emacs && { [ "$(ps aux | grep 'emacs --daemon' | wc -l)" = "2" ] ||
 		    emacs --daemon; }
 
-xrandr | grep 'HDMI2 connected' && monitor_config.sh -dup || monitor_config.sh -one
+xrandr | grep 'HDMI2 connected' && monitor_config.sh -two || monitor_config.sh -one
 
 xrdb -merge $HOME/.Xresources
 
