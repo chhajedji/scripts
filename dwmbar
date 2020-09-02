@@ -18,9 +18,9 @@ do
     {
         STATCHAR="[$(cat /sys/class/power_supply/BAT1/status | colrm 2 99)]"
 
-    # When battery is completely charged, Plug icon will be shown indicating
-    # power from AC supply. If not, then "D" or "C" depending on it's
-    # status.
+        # When battery is completely charged, Plug icon will be shown indicating
+        # power from AC supply. If not, then "D" or "C" depending on it's
+        # status.
         [ "$STATCHAR" = "[F]" ] && echo -n "" && return 0
 
         CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
@@ -42,7 +42,7 @@ do
 
     ram()
     {
-        FREE_DATA=$(free -m | grep Mem)
+        FREE_DATA=$(free -t | grep Total)
         CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
         TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
 
