@@ -10,6 +10,9 @@ command -v nm-applet && { pgrep nm-applet || nm-applet & }
 # Set screen-timeout to 600 seconds.
 xset dpms 600
 
+# Prevent screen from blanking.
+# xset s off -dpms
+
 # Turnoff touchpad. Use `xinput` to see all inputs. To enable, set it to 1. Put
 # this in i3 config, not .bashrc as for floating wm for my Kubuntu, a script automatically
 # disables it.
@@ -28,7 +31,7 @@ new_wall.sh &
 type emacs && { [ "$(ps aux | grep 'emacs --daemon' | wc -l)" = "2" ] ||
 		    emacs --daemon; }
 
-xrandr | grep 'HDMI2 connected' && monitor_config.sh -two || monitor_config.sh -one
+xrandr | grep 'HDMI2 connected' && disp_config.sh -two || disp_config.sh -one
 
 xrdb -merge $HOME/.Xresources
 
