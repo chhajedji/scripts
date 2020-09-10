@@ -33,7 +33,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Functionality
     - Put all your applications which needed to run after startup in this script. Applications like wallpaper, notification manager, clipboard manager, network manager etc.
     - Check if application is already running, if not then start it.
-    - It will also select if HDMI is connected and set monitors for dual display using [monitor_config.sh](#monitor_config.sh).
+    - It will also select if HDMI is connected and set monitors for dual display using [disp_config.sh](#disp_config.sh).
     - Applications listed in _Dependencies_ are one that I use. Most of them have a check that if they are installed.
 
 - Dependencies
@@ -42,7 +42,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `compton`: Compositing manager.
     - `dunst`: Notification manager.
     - `redshift`: For adjusting screen temperature.
-    - [monitor_config](#monitor_config).
+    - [disp_config](#disp_config).
     - [new_wall](#new_wall).
 
 #### [blur_lock](blur_lock.sh)
@@ -106,7 +106,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 	- `Vi`.
 	- `urxvt` (If globally `TERMINAL` is not set).
 
-#### [monitor_config](monitor_config.sh)
+#### [disp_config](disp_config.sh)
 
 - Functionality
     - Multiple screens setup for single, dual or duplicate screens.
