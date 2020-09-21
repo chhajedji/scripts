@@ -205,6 +205,14 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `paplay`
     - [alert.ogg](https://github.com/chhajedji/dot-files/blob/master/T480/.local/share/supplements/alert.ogg) stored at `$HOME/.local/share/supplemets/alert.ogg`.
 
+#### [notification_toggle](notification_toggle.sh)
+
+- Functionality
+    - Pause, resume and toggle dunst notification display. Useful when focusing on work or doing a screenshare, to avoid notifications.
+
+- Dependency
+    - `dunst`
+
 #### [o](o)
 
 - Functionality
