@@ -12,7 +12,11 @@ IMG="$(ls -R $HOME/Pictures/wallpapers/ | grep '.*\.png\|.*\.jpg' |shuf -n 1 |xa
 echo Lock image: $IMG
 
 xset dpms 8
+pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_PAUSE" &&
+    echo "Paused dunst notifications."
 pic_lock.sh -i $IMG
+pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_RESUME"
+&& echo "Resumed dunst notifications."
 xset dpms 600
 
 
