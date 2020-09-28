@@ -86,7 +86,6 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Search for manual pages.
     - Search for words in dictionary.
     - Go to git repos in your system.
-    > Opening git repositories in terminal uses `locate` for searching. So you need to use `sudo updatedb` for it to work properly every time.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
