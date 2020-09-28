@@ -4,7 +4,7 @@
 
 # Usage
 # dmenu_input.sh -d: Do a dictionary search using dmenu.
-# dmneu_input.sh -m: Search for a manpage.
+# dmneu_input.sh -m: Search for a man page.
 # dmneu_input.sh -g: Do a google search in firefox.
 # dmneu_input.sh -r: Open a git repo stored in `$HOME'.
 # dmenu_input.sh -f: Open a terminal is a directory. Similar to fuzzy
@@ -79,9 +79,18 @@ case $1 in
     -m)
         # Store list of all available man pages in a file.
         apropos . |sort >/tmp/manlist.txt
-        WORD=$(cat /tmp/manlist.txt | dmenu -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | cut -d ' ' -f 1)
-        echo $WORD
+
+        # In manlist.txt, entries are in the form
+
+        #       signal (7)    - overview of signals
+
+        # We need to modify this query in the form "7 signal" so that our query
+        # can become `man 7 signal'. This will search 7th man page of signal
+        # instead of default which is 2nd.
+
+        WORD="$(cat /tmp/manlist.txt | dmenu -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | sed 's/\(.*\) (\([0-9]*\)).*/\2 \1/')"
         if [ -n "$WORD" ]; then
+            echo "Showing result for \"man $WORD\""
             $TERMINAL -name dropdown_manual -e sh -c "man ${WORD} || figlet -c 'No manual entry for \"${WORD}\"' |less" >/dev/null
             # exec i3-msg [instance="dropdown_manual"] focus >/dev/null
         fi
