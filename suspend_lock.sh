@@ -9,5 +9,5 @@ echo "Suspending system and locking with \`i3lock'."
 systemctl suspend && i3lock -c "#222222" -n
 # After unlocking, set screentimeout to 600 s.
 xset dpms 600
-pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_RESUME"
-&& echo "Resumed dunst notifications."
+pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_RESUME" &&
+    echo "Resumed dunst notifications."
