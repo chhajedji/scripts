@@ -29,11 +29,9 @@ new_wall.sh &
 # If has emacs, search if daemon is already running. If not then start
 # an emacs daemon.
 type emacs && { [ "$(ps aux | grep 'emacs --daemon' | wc -l)" = "2" ] ||
-		    emacs --daemon; }
+    emacs --daemon; } &
 
-xrandr | grep 'HDMI2 connected' && disp_config.sh -two || disp_config.sh -one
-
-xrdb -merge $HOME/.Xresources
+disp_config.sh
 
 # 1. Check if dwm is current windown manager.
 # 2. Start dwmbar only if it's not running.
