@@ -36,3 +36,4 @@ disp_config.sh
 # 1. Check if dwm is current windown manager.
 # 2. Start dwmbar only if it's not running.
 wmctrl -m |grep dwm && { pgrep dwmbar || dwmbar; }
+pgrep -x power_alert.sh >/dev/null || power_alert.sh
