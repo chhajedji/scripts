@@ -210,7 +210,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Pause, resume and toggle dunst notification display. Useful when focusing on work or doing a screenshare, to avoid notifications.
 
 - Dependency
-    - `dunst`
+    - `dunst`/`notify-send`
 
 #### [o](o)
 
@@ -240,6 +240,15 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - `i3lock`
     - `xrandr`
+
+#### [power_alert](power_alert.sh)
+
+- Functionality
+    - Sends a notification when battery goes below a certain
+      level. This threshold level can be set inside.
+
+- Dependency
+    - `dunst`/`notify-send`
 
 #### [preexec](preexec.bash)
 
