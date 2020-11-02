@@ -11,6 +11,7 @@
 #                    finder through dmenu but for directory instead of files.
 # dmenu_input.sh -l: Normal application launcher using dmenu. Runs
 #					 basic `dmenu_run' command.
+# dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
 
 DMENU_FONT1="Inconsolata 12"
 
@@ -95,6 +96,18 @@ case $1 in
             # exec i3-msg [instance="dropdown_manual"] focus >/dev/null
         fi
     ;;
+
+    -t)
+        TIMER=$(echo -n "" | dmenu -p 'Minutes to stop notifications:' -fn "$DMENU_FONT1")
+        if [ -n "$TIMER" ]; then
+            notify-send "Turning on Focus mode for $TIMER minutes."
+            sleep 7s
+            notify-send "DUNST_COMMAND_PAUSE"
+            sleep "$TIMER"m
+            notify-send "DUNST_COMMAND_RESUME"
+            notify-send "Focus mode turned off."
+        fi
+        ;;
 
     *)
         MESSAGE="Not a valid option to run. :P"
