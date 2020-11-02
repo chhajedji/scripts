@@ -6,7 +6,7 @@
 # `netspeed CYCLES[number of tests]' [anything for upload][optional].
 
 CYCLES=$1
-# Default is 5 cycles
+# Default is 2 cycles
 [ -n "$CYCLES" ] || CYCLES=2
 
 rm /tmp/upspeed 2>/dev/null
@@ -22,6 +22,13 @@ done
 # Update number of cycles based on results. This might be less than or equal to
 # `CYCLES' defined earlier.
 ROUNDS=$(cat /tmp/downspeed | grep "^Download: [0-9.]\{1,4\}" | wc -l)
+
+if [ "$ROUNDS" = "0" ]; then
+    FAILMSG="Failed to perform speedtest."
+    notify-send "$FAILMSG"
+    echo "$FAILMSG"
+    exit 1
+fi
 
 # Calculating average download speed.
 echo "" >> /tmp/downspeed
