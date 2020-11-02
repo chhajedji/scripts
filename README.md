@@ -85,7 +85,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Do a web search or go to a URL.
     - Search for manual pages.
     - Search for words in dictionary.
-    - Go to git repos in your system.
+    - Go to git repos in your system. (This uses a file created by command `find $HOME/ -regex .*/\.git$ 2>/dev/null > $HOME/.tmp/gitfiles` to search for path of all git directories. I run this command while updating system Also there should be a directory ".tmp" in your `$HOME` directory. Check `up-to-date` command [here in dot-files repo](https://github.com/chhajedji/dot-files/blob/master/T480/.alias)).
+    - Turn off notifications for specified time.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
@@ -93,6 +94,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `dict` and `dictd`: For command line dictionary.
     - `dmenu`
     - `urxvt` (If globally environmental variable `TERMINAL` is unset).
+    - `dunst`/`notify-send`
 
 #### [editor](editor.sh)
 

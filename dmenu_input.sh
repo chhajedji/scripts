@@ -10,7 +10,7 @@
 # dmenu_input.sh -f: Open a terminal is a directory. Similar to fuzzy
 #                    finder through dmenu but for directory instead of files.
 # dmenu_input.sh -l: Normal application launcher using dmenu. Runs
-#					 basic `dmenu_run' command.
+#                    basic `dmenu_run' command.
 # dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
 
 DMENU_FONT1="Inconsolata 12"
