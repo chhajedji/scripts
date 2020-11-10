@@ -12,6 +12,7 @@
 # dmenu_input.sh -l: Normal application launcher using dmenu. Runs
 #                    basic `dmenu_run' command.
 # dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
+# dmenu_input.sh -w: Select WiFi network to connect.
 
 DMENU_FONT1="Inconsolata 12"
 
@@ -108,6 +109,25 @@ case $1 in
             notify-send "Focus mode turned off."
         fi
         ;;
+    -w)
+        notify-send "Searcing for WiFi networks.."
+        WIFICURRENT="$(nmcli dev wifi | sed -n 's/^* *\([^ ]*\).*/\1/p')"
+        echo "Current network is $WIFICURRENT"
+
+        WIFISELECT=$(nmcli dev wifi | dmenu -fn "$DMENU_FONT1" -l 20 -p 'Select WiFi network to connect')
+        if [ -n "$WIFISELECT" ]; then
+            WIFIBSSID=$(echo $WIFISELECT | sed -n 's/^.*\([A-Fa-f0-9:]\{17\}\).*/\1/p')
+
+            echo "Connecting to $WIFIBSSID"
+
+            if [ "$WIFICURRENT" != "$WIFIBSSID" ]; then
+                nmcli d wifi connect $WIFIBSSID
+            else
+                echo "Already connected to this network."
+            fi
+        fi
+        ;;
+
 
     *)
         MESSAGE="Not a valid option to run. :P"
