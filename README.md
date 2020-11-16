@@ -88,6 +88,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Go to git repos in your system. (This uses a file created by command `find $HOME/ -regex .*/\.git$ 2>/dev/null > $HOME/.tmp/gitfiles` to search for path of all git directories. I run this command while updating system Also there should be a directory ".tmp" in your `$HOME` directory. Check `up-to-date` command [here in dot-files repo](https://github.com/chhajedji/dot-files/blob/master/T480/.alias)).
     - Turn off notifications for specified time.
     - Connect to a WiFi network present in vicinity.
+    - Quit system in multiple ways like power off, restart, suspend and logout. Not that it uses some options with `sudo` option. So make sure to either run this with `sudo` or add `pkill` and `shutdown` to sudoers.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
@@ -97,6 +98,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `urxvt` (If globally environmental variable `TERMINAL` is unset).
     - `dunst`/`notify-send`
     - `nmcli`
+    - [`suspend_lock.sh`](suspend_lock.sh)
 
 #### [editor](editor.sh)
 
