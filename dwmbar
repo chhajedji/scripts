@@ -2,9 +2,6 @@
 
 SLEEPTIME="2"
 
-while true
-do
-
     lockind()
     {
         CAPSLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Caps Lock: *\([a-z]\{2,3\}\).*/\1/')"
@@ -85,8 +82,9 @@ do
 
     }
 
-
-xsetroot -name "$(bandwidth)  |  $(vol)  |  $(battery)  |  $(ram)    $(cpu)    $(temp)  |  $(datetime)  |  $(lockind)"
+while true
+do
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(ram)  $(cpu)  $(temp) | $(datetime) | $(lockind)"
     sleep "$SLEEPTIME"s
 
 done &
