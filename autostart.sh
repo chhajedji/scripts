@@ -22,7 +22,11 @@ xset dpms 600
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
 
 command -v compton && { pgrep compton || compton --config $HOME/.config/compton/compton.conf -b & }
-command -v dunst && { pgrep dunst || { killall -q notify-osd; dunst -config $HOME/.config/dunst/dunstrc & } }
+
+# awesomewm doesn't need dunst for notifications.
+pgrep -x awesome ||
+    { command -v dunst && { pgrep dunst || { killall -q notify-osd; dunst -config $HOME/.config/dunst/dunstrc & } } }
+
 redshift -P -O 3700 &
 new_wall.sh &
 
@@ -35,5 +39,6 @@ disp_config.sh
 
 # 1. Check if dwm is current windown manager.
 # 2. Start dwmbar only if it's not running.
-wmctrl -m |grep dwm && { pgrep dwmbar || dwmbar; }
+wmctrl -m | grep dwm && { pgrep dwmbar || dwmbar; }
+
 pgrep -x power_alert.sh >/dev/null || power_alert.sh
