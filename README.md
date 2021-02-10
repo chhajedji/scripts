@@ -163,6 +163,16 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - `git`
 
+#### [git-when-merged](git-when-merged)
+
+- Functionality
+    - Helps to detect merge commit (to know when and why a commit was merged into a branch).
+    - Original: [git-when-merged](https://github.com/mhagger/git-when-merged).
+
+- Dependency
+    - `git`
+    - `python`
+
 #### [i3blocks](i3blocks)
 
 - Functionality
