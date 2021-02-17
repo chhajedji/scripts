@@ -68,6 +68,15 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - None
 
+#### [completion](completion.bash)
+
+- Functionality
+    - Dependency for `fzf` to enable completion.
+    - See https://github.com/junegunn/fzf.
+
+- Dependency
+    - `fzf`
+
 #### [csb](csb)
 
 - Functionality
@@ -137,6 +146,15 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - `xclip`
 
+#### [fd](fd)
+
+- Functionality
+    - Linked to `/usr/bin/fdfind` (only for Debian).
+    - See https://github.com/sharkdp/fd.
+
+- Dependency
+    - `fdfind`(https://github.com/sharkdp/fd)
+
 #### [focus_window](focus_window.sh)
 
 - Functionality
@@ -182,6 +200,17 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependency
     - None
+
+#### [key-bindings](key-bindings.bash)
+
+- Functionality
+    - Dependency for `fzf`.
+    - Adds keybindings to change directory, reverse search and ctrl-t for completing files in current directory using `fzf`.
+    - See https://github.com/junegunn/fzf.
+
+- Dependency
+    - `fzf`
+
 
 #### [long-running](long-running.bash)
 
