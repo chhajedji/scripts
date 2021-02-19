@@ -68,6 +68,16 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - None
 
+#### [clickbar](clickbar.sh)
+
+- Functionality
+    - Script triggered when `dwm` status bar is clicked.
+
+- Dependency
+    - `gnome-calendar`
+    - [`volume_change.sh`](volume_change.sh)
+    - `htop`
+
 #### [completion](completion.bash)
 
 - Functionality

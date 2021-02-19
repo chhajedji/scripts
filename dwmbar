@@ -84,7 +84,7 @@ SLEEPTIME="2"
 
 while true
 do
-    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(ram)  $(cpu)  $(temp) | $(datetime) | $(lockind)"
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(ram)  $(cpu)  $(temp) | $(datetime) | $(lockind) |"
     sleep "$SLEEPTIME"s
 
 done &
