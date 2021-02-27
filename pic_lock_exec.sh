@@ -8,7 +8,12 @@
 
 # xset dpms 5; i3lock -ef --color 2f343f -n; xset dpms 600
 
-IMG="$(ls -R $HOME/Pictures/wallpapers/ | grep '.*\.png\|.*\.jpg' |shuf -n 1 |xargs find $HOME/Pictures/wallpapers/ -name )"
+# List all unique picture formats in wallpapers directory with this query and
+# grep required file formats to choose from.
+
+# ls -R $HOME/Pictures/wallpapers/ | sed "s/.*\(\.[a-z]*$\)/\1/p" -n | sort | uniq
+
+IMG="$(ls -R $HOME/Pictures/wallpapers/ | grep '.*\.png\|.*\.jpg\|\.jpeg' | shuf -n 1 | xargs find $HOME/Pictures/wallpapers/ -name )"
 echo Lock image: $IMG
 
 xset dpms 8
