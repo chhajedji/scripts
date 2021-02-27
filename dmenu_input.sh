@@ -33,8 +33,8 @@ case $1 in
 
     # Open terminal in a directory.
     -f)
-        DIR="$(find $HOME/ -type d -not -path '*/\.git/*' -not -path '*/\.git' 2>/dev/null |
-            sed s:/home/$USER:~: | dmenu -i -l 20 -p "Go to directory:" -fn '$DMENU_FONT1')"
+        DIR="$(fd . $HOME --type d 2>/dev/null | sed s:/home/$USER:~: |
+        dmenu -i -l 20 -p "Go to directory:" -fn '$DMENU_FONT1')"
 
         if [ "$DIR" = "~/" ]; then
             cd $HOME && $TERMINAL &
@@ -102,6 +102,12 @@ case $1 in
     -t)
         TIMER=$(echo -n "" | dmenu -p 'Minutes to stop notifications:' -fn "$DMENU_FONT1")
         if [ -n "$TIMER" ]; then
+            if [ -z $TIMER ]; then
+                notify-send "DUNST_COMMAND_RESUME"
+                notify-send "Notifications resumed."
+                exit
+            fi
+
             notify-send "Turning on Focus mode for $TIMER minutes."
             sleep 7s
             notify-send "DUNST_COMMAND_PAUSE"
@@ -130,7 +136,7 @@ case $1 in
         ;;
 
     -e)
-        OPTION=$(printf "Power off\nRestart\nSleep\nLogout\n" | dmenu -fn "$DMENU_FONT1" -p 'Select option')
+        OPTION=$(printf "Sleep\nPower off\nRestart\nLogout\n" | dmenu -fn "$DMENU_FONT1" -p 'Select option')
         echo $OPTION
         if [ -n "$OPTION" ]; then
             case $OPTION in
@@ -150,7 +156,6 @@ case $1 in
                     sudo shutdown -r now
                     ;;
                 "Sleep")
-                    echo "inside sleep"
                     notify-send "Suspending now.."
                     sleep 2s
                     suspend_lock.sh

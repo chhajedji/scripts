@@ -8,7 +8,7 @@
 # crosses. `CRITICAL_THRESHOLD' value.
 
 ALERT_SENT=0
-CRITICAL_THRESHOLD=40
+CRITICAL_THRESHOLD=35
 SAFE_THRESHOLD=80
 
 # Global variables which might be used by other applications.
