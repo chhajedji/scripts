@@ -25,6 +25,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Functionality
     - Display current window's title.
+    - If run from a terminal, will ask user to select which window's name to get.
+
 - Dependency
     - None
 
