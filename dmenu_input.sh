@@ -11,6 +11,7 @@
 #                    finder through dmenu but for directory instead of files.
 # dmenu_input.sh -l: Normal application launcher using dmenu. Runs
 #                    basic `dmenu_run' command.
+# dmneu_input.sh -k: Kill a process.
 # dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
 # dmenu_input.sh -w: Select WiFi network to connect.
 # dmenu_input.sh -e: Options to exit system. To use this option, run script as a sudo user.
@@ -99,23 +100,42 @@ case $1 in
         fi
         ;;
 
+    # Kill a process listed in ps aux
+    -k)
+        # Substitute blank spaces with a ~.
+        QUERY="$(ps aux | dmenu -l 20 -p 'Kill who?' |  sed -E 's/ +/~/g' )"
+        if [ -n "$QUERY" ]; then
+            # If owner is different, don't be evil.
+            ME=$(whoami)
+            echo $QUERY | grep -q "^$ME" || { notify-send "[!] Only processes owned by \"$ME\" can be killed." && return 1; }
+            # echo $QUERY
+            KILLPID="$(echo $QUERY | cut -d "~" -f 2)"
+            kill $KILLPID &&
+                { echo Killed process $KILLPID && notify-send "Killed process $KILLPID"; } ||
+                { echo "Unable to kill process $KILLPID" && notify-send "Unable to kill process $KILLPID"; }
+        fi
+        ;;
+
+    # Stop notifications for specified time in minutes.
     -t)
         TIMER=$(echo -n "" | dmenu -p 'Minutes to stop notifications:' -fn "$DMENU_FONT1")
         if [ -n "$TIMER" ]; then
-            if [ -z $TIMER ]; then
+            # Enter 0 to resume notifications.
+            if [ 0 -eq $TIMER ]; then
                 notify-send "DUNST_COMMAND_RESUME"
                 notify-send "Notifications resumed."
-                exit
+                return 0
             fi
 
             notify-send "Turning on Focus mode for $TIMER minutes."
-            sleep 7s
+            sleep 4s
             notify-send "DUNST_COMMAND_PAUSE"
             sleep "$TIMER"m
             notify-send "DUNST_COMMAND_RESUME"
             notify-send "Focus mode turned off."
         fi
         ;;
+    # Search for WiFi networks and connect to selected one.
     -w)
         notify-send "Searcing for WiFi networks.."
         WIFICURRENT="$(nmcli dev wifi | sed -n 's/^* *\([^ ]*\).*/\1/p')"
@@ -135,6 +155,7 @@ case $1 in
         fi
         ;;
 
+    # Turn off system.
     -e)
         OPTION=$(printf "Sleep\nPower off\nRestart\nLogout\n" | dmenu -fn "$DMENU_FONT1" -p 'Select option')
         echo $OPTION

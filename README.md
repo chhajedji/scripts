@@ -110,6 +110,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Turn off notifications for specified time.
     - Connect to a WiFi network present in vicinity.
     - Quit system in multiple ways like power off, restart, suspend and logout. Not that it uses some options with `sudo` option. So make sure to either run this with `sudo` or add `pkill` and `shutdown` to sudoers.
+    - Kill any process owned by same user.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
