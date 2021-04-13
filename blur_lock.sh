@@ -13,6 +13,6 @@ pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_PAUSE" &&
 echo "Locking system with \`i3lock'"
 i3lock -efi $TMPBG -n
 xset dpms 600
-pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_RESUME"
-&& echo "Resumed dunst notifications."
+pgrep dunst >/dev/null && notify-send "DUNST_COMMAND_RESUME" &&
+    echo "Resumed dunst notifications."
 rm $TMPBG

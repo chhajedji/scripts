@@ -24,6 +24,11 @@ case "$1" in
         # Two monitors.
         $LAPTOPRIGHT && echo "Configuring 2 displays."
         ;;
+
+    -one)
+        $ONE && echo "Configuring single display."
+        ;;
+
     -up)
         # HDMI2 up, monitor down.
         $LAPTOPDOWN && echo "Configuring 2 displays."
