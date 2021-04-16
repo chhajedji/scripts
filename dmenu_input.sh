@@ -102,16 +102,17 @@ case $1 in
 
     # Kill a process listed in ps aux
     -k)
-        # Substitute blank spaces with a ~.
-        QUERY="$(ps aux | dmenu -l 20 -p 'Kill who?' |  sed -E 's/ +/~/g' )"
+        # Substitute one or more blank spaces with a |.
+        QUERY="$(ps aux | dmenu -l 20 -p 'Kill who?' |  sed -E 's/ +/|/g' )"
         if [ -n "$QUERY" ]; then
             # If owner is different, don't be evil.
             ME=$(whoami)
             echo $QUERY | grep -q "^$ME" || { notify-send "[!] Only processes owned by \"$ME\" can be killed." && return 1; }
             # echo $QUERY
-            KILLPID="$(echo $QUERY | cut -d "~" -f 2)"
+            KILLPID="$(echo $QUERY | cut -d "|" -f 2)"
+            KILLEDNAME="$(echo $QUERY | cut -d '|' -f11- | sed 's/|/ /g')"
             kill $KILLPID &&
-                { echo Killed process $KILLPID && notify-send "Killed process $KILLPID"; } ||
+                { echo Killed \"$KILLEDNAME\" && notify-send "Killed \"$KILLEDNAME\""; } ||
                 { echo "Unable to kill process $KILLPID" && notify-send "Unable to kill process $KILLPID"; }
         fi
         ;;
