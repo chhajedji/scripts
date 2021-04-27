@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Pre-requisites: `speedtest'
+# Pre-requisites: `speedtest-cli'
 
 # Usage:
 # `netspeed CYCLES[number of tests]' [anything for upload][optional].
@@ -16,7 +16,7 @@ echo $(date) >> /tmp/downspeed
 echo '' >> /tmp/downspeed
 
 for((i=0;i<$CYCLES;i++));do
-    (command -v speedtest >/dev/null && speedtest --no-upload |grep ^Download |tee -a /tmp/downspeed)
+    (command -v speedtest-cli >/dev/null && speedtest-cli --no-upload |grep ^Download |tee -a /tmp/downspeed)
 done
 
 # Update number of cycles based on results. This might be less than or equal to
@@ -24,7 +24,7 @@ done
 ROUNDS=$(cat /tmp/downspeed | grep "^Download: [0-9.]\{1,4\}" | wc -l)
 
 if [ "$ROUNDS" = "0" ]; then
-    FAILMSG="Failed to perform speedtest."
+    FAILMSG="Failed to perform speedtest-cli."
     notify-send "$FAILMSG"
     echo "$FAILMSG"
     exit 1
@@ -51,7 +51,7 @@ if [ $2 ]; then
     echo $(date) >> /tmp/upspeed
     echo '' >> /tmp/upspeed
     for((i=0;i<$CYCLES;i++));do
-        command -v speedtest >/dev/null && speedtest --no-download |grep ^Upload |tee -a /tmp/upspeed
+        command -v speedtest-cli >/dev/null && speedtest-cli --no-download |grep ^Upload |tee -a /tmp/upspeed
     done
 
 # Update number of cycles based on results. This might be less than or equal to
