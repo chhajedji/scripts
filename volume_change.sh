@@ -35,6 +35,6 @@ case $1 in
         echo "Invalid option."
         return 1
 
-esac && paplay $HOME/.local/share/supplements/volume_change.ogg
+esac && paplay $HOME/.local/share/supplements/volume_change.ogg &
 
-restartbar.sh
+restartbar.sh &
