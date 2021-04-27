@@ -23,7 +23,7 @@ case $1 in
 
     -s) $TERMINAL -e htop ;;
 
-    -d) gnome-calendar ;;
+    -d) gsimplecal ;;
 
     *)
         echo "Invalid option."

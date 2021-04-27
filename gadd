@@ -11,8 +11,8 @@ git checkout T480 >/dev/null
 rm -rf $HOME/pnl/github/dot-files/T480
 
 # Create longest directory so that all parent directories will be auto-created.
-
 mkdir -p $HOME/pnl/github/dot-files/T480/
+
 # Copy changed files at $HOME/.
 cp -fr                      \
 $HOME/.vim                  \

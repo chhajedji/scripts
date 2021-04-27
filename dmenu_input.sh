@@ -92,7 +92,7 @@ case $1 in
         # can become `man 7 signal'. This will search 7th man page of signal
         # instead of default which is 2nd.
 
-        WORD="$(cat /tmp/manlist.txt | dmenu -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | sed 's/\(.*\) (\([0-9]*\)).*/\2 \1/')"
+        WORD="$(cat /tmp/manlist.txt | dmenu -i -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | sed 's/\(.*\) (\([0-9]*\)).*/\2 \1/')"
         if [ -n "$WORD" ]; then
             echo "Showing result for \"man $WORD\""
             $TERMINAL -name dropdown_manual -e sh -c "man ${WORD} || figlet -c 'No manual entry for \"${WORD}\"' |less" >/dev/null
@@ -103,7 +103,7 @@ case $1 in
     # Kill a process listed in ps aux
     -k)
         # Substitute one or more blank spaces with a |.
-        QUERY="$(ps aux | dmenu -l 20 -p 'Kill who?' |  sed -E 's/ +/|/g' )"
+        QUERY="$(ps aux | dmenu -i -l 20 -p 'Kill who?' |  sed -E 's/ +/|/g' )"
         if [ -n "$QUERY" ]; then
             # If owner is different, don't be evil.
             ME=$(whoami)
@@ -142,7 +142,7 @@ case $1 in
         WIFICURRENT="$(nmcli dev wifi | sed -n 's/^* *\([^ ]*\).*/\1/p')"
         echo "Current network is $WIFICURRENT"
 
-        WIFISELECT=$(nmcli dev wifi | dmenu -fn "$DMENU_FONT1" -l 20 -p 'Select WiFi network to connect')
+        WIFISELECT=$(nmcli dev wifi | dmenu -i -fn "$DMENU_FONT1" -l 20 -p 'Select WiFi network to connect')
         if [ -n "$WIFISELECT" ]; then
             WIFIBSSID=$(echo $WIFISELECT | sed -n 's/^.*\([A-Fa-f0-9:]\{17\}\).*/\1/p')
 
@@ -158,7 +158,7 @@ case $1 in
 
     # Turn off system.
     -e)
-        OPTION=$(printf "Sleep\nPower off\nRestart\nLogout\n" | dmenu -fn "$DMENU_FONT1" -p 'Select option')
+        OPTION=$(printf "Sleep\nPower off\nRestart\nLogout\n" | dmenu -i -fn "$DMENU_FONT1" -p 'Select option')
         echo $OPTION
         if [ -n "$OPTION" ]; then
             case $OPTION in

@@ -76,7 +76,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Script triggered when `dwm` status bar is clicked.
 
 - Dependency
-    - `gnome-calendar`
+    - `gsimplecal`
     - [`volume_change.sh`](volume_change.sh)
     - `htop`
 
@@ -236,6 +236,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `notify-send`
 
 #### [netspeed](netspeed)
+
+> Not working now as Ookla changed their `speedtest` script implementation. Needs to be updated.
 
 - Functionality
     - Check internet speed and save results in `$HOME/`.

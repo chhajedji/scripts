@@ -4,21 +4,21 @@ case "$1" in
 
     # Increase transparency.
     -i)
-WIN_ID="`xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}'`"
-compton-trans -w ${WIN_ID} +"$1"
-        echo "Transparency increased by $1"
-;;
+        WIN_ID="`xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}'`"
+        compton-trans -w ${WIN_ID} +"$2"
+        echo "Transparency increased by $2"
+        ;;
 
 
     # Decrease transparency.
     -d)
         WIN_ID="`xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}'`"
-        compton-trans -w ${WIN_ID} -"$1"
-        echo "Transparency decreased by $1"
+        compton-trans -w ${WIN_ID} -"$2"
+        echo "Transparency decreased by $2"
         ;;
 
     *)
         echo "Invalid option."
         return 1
         ;;
-    esac
+esac
