@@ -21,7 +21,9 @@ xset dpms 420
 #        `xinput set-prop [Device name in quotes/Device ID]` - set desired property for given device.
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
 
-command -v compton && { pgrep compton || compton --config $HOME/.config/compton/compton.conf -b & }
+# Try to use picom, if not available then use compton.
+{ command -v picom && { pgrep picom || picom --config $HOME/.config/picom/picom.conf -b & }; } ||
+    { command -v compton && { pgrep compton || compton --config $HOME/.config/compton/compton.conf -b & } }
 
 # awesomewm doesn't need dunst for notifications.
 pgrep -x awesome ||
