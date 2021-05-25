@@ -41,6 +41,7 @@ cp -fr                      \
 $HOME/.config/i3            \
 $HOME/.config/dunst         \
 $HOME/.config/compton       \
+$HOME/.config/picom         \
 $HOME/.config/gsimplecal    \
 $HOME/pnl/github/dot-files/T480/.config/
 
