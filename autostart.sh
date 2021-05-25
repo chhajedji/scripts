@@ -7,8 +7,8 @@ command -v parcellite && { pgrep parcellite || parcellite & }
 
 command -v nm-applet && { pgrep nm-applet || nm-applet & }
 
-# Set screen-timeout to 600 seconds.
-xset dpms 600
+# Set screen-timeout to 420 seconds.
+xset dpms 420
 
 # Prevent screen from blanking.
 # xset s off -dpms
@@ -39,6 +39,6 @@ disp_config.sh
 
 # 1. Check if dwm is current windown manager.
 # 2. Start dwmbar only if it's not running.
-wmctrl -m | grep dwm && { pgrep dwmbar || dwmbar; }
+wmctrl -m | grep dwm && { pgrep dwmbar || dwmbar; } &
 
 pgrep -x power_alert.sh >/dev/null || power_alert.sh

@@ -25,8 +25,8 @@ if [ $1 ]; then
         cscope -bi cscope.files
         ctags -e -R $cwd
         cd $STARTDIR
-        echo "Ran \`csb' for $target_dir."
     done
+    echo "Ran \`csb' for $@."
 else
     target_dir="`basename $PWD`"
     cwd=$PWD

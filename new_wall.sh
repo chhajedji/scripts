@@ -7,12 +7,20 @@
 
 # IMG="$(ls -R $HOME/Pictures/wallpapers/ | grep '.*\.png\|.*\.jpg\|\.jpeg' | shuf -n 1 | xargs -I {} fd {} $HOME/Pictures/wallpapers/ )"
 
-echo "Setting new wallpaper."
 #
 # feh $IMG --bg-scale
 #
 # Set terminal colorscheme with `pywal'.
 # wal -n -i "$IMG" -a 82
+
+# Give any file as argument to set it as wallpaper.
+if [ $1 ]; then
+    echo "Setting $1 as new wallpaper."
+    RET=$(feh --bg-scale "$1")
+    return $RET
+fi
+
+echo "Setting new wallpaper."
 
 disp_config.sh
 # To set wallpaper by `feh' without `IMG' variable.
