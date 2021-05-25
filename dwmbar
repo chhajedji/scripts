@@ -2,89 +2,89 @@
 
 SLEEPTIME="2"
 
-    lockind()
-    {
-        CAPSLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Caps Lock: *\([a-z]\{2,3\}\).*/\1/')"
-        NUMLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Num Lock: *\([a-z]\{2,3\}\).*/\1/')"
-        [ "$CAPSLOCK" = "off" ] && CAPSLOCK="a" || CAPSLOCK="A"
-        [ "$NUMLOCK" = "off" ] && NUMLOCK="-" || NUMLOCK=""
-        echo -n "$CAPSLOCK  $NUMLOCK"
-    }
+lockind()
+{
+    CAPSLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Caps Lock: *\([a-z]\{2,3\}\).*/\1/')"
+    NUMLOCK="$(xset q | grep 'Caps Lock' |sed 's/.*Num Lock: *\([a-z]\{2,3\}\).*/\1/')"
+    [ "$CAPSLOCK" = "off" ] && CAPSLOCK="a" || CAPSLOCK="A"
+    [ "$NUMLOCK" = "off" ] && NUMLOCK="-" || NUMLOCK=""
+    echo -n "$CAPSLOCK  $NUMLOCK"
+}
 
-    battery()
-    {
-        STATCHAR="[$(cat /sys/class/power_supply/BAT1/status | colrm 2 99)]"
+battery()
+{
+    STATCHAR="[$(cat /sys/class/power_supply/BAT1/status | colrm 2 99)]"
 
-        # When battery is completely charged, Plug icon will be shown indicating
-        # power from AC supply. If not, then "D" or "C" depending on it's
-        # status.
-        [ "$STATCHAR" = "[F]" ] && echo -n "" && return 0
+    # When battery is completely charged, Plug icon will be shown indicating
+    # power from AC supply. If not, then "D" or "C" depending on it's
+    # status.
+    [ "$STATCHAR" = "[F]" ] && echo -n "" && return 0
 
-        CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
+    CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
 
-        echo -n " $CAP $STATCHAR"
-    }
+    echo -n " $CAP $STATCHAR"
+}
 
-    vol()
-    {
-        amixer get Master | tail -1 | grep -w "on" >/dev/null &&
+vol()
+{
+    amixer get Master | tail -1 | grep -w "on" >/dev/null &&
         echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
-        echo -n " MUTE"
-    }
+            echo -n " MUTE"
+}
 
-    cpu()
-    {
-        echo -n " $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%"
-    }
+cpu()
+{
+    echo -n " $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%"
+}
 
-    ram()
-    {
-        FREE_DATA=$(free -t | grep Total)
-        CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
-        TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
+ram()
+{
+    FREE_DATA=$(free -t | grep Total)
+    CURRENT=$(echo $FREE_DATA | cut -f3 -d' ')
+    TOTAL=$(echo $FREE_DATA | cut -f2 -d' ')
 
-        echo -n " $(echo "scale = 1; ($CURRENT/$TOTAL)*100" | bc)%"
-    }
+    echo -n " $(echo "scale = 1; ($CURRENT/$TOTAL)*100" | bc)%"
+}
 
-    temp()
-    {
-        echo -n " $(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
-    }
+temp()
+{
+    echo -n " $(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)"
+}
 
-    datetime()
-    {
-        echo -n " $(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
-    }
+datetime()
+{
+    echo -n " $(date +'%a'), $(date +'%b %d')  $(date +'%H:%M')"
+}
 
-     bandwidth()
-    {
+bandwidth()
+{
 
-        # Get tx and rx data from all interfaces.
-        [ -f /tmp/rxdata ] && PREVRX=$(($(cat /tmp/rxdata))) || PREVRX=0
-        [ -f /tmp/txdata ] && PREVTX=$(($(cat /tmp/txdata))) || PREVTX=0
-        RXBYTES=$(($(cat /sys/class/net/*/statistics/rx_bytes | paste -sd '+' | tee /tmp/rxdata)))
-        TXBYTES=$(($(cat /sys/class/net/*/statistics/tx_bytes | paste -sd '+' | tee /tmp/txdata)))
-        RXSPEED=$((($RXBYTES-$PREVRX)/1024))
-        TXSPEED=$((($TXBYTES-$PREVTX)/1024))
+    # Get tx and rx data from all interfaces.
+    [ -f /tmp/rxdata ] && PREVRX=$(($(cat /tmp/rxdata))) || PREVRX=0
+    [ -f /tmp/txdata ] && PREVTX=$(($(cat /tmp/txdata))) || PREVTX=0
+    RXBYTES=$(($(cat /sys/class/net/*/statistics/rx_bytes | paste -sd '+' | tee /tmp/rxdata)))
+    TXBYTES=$(($(cat /sys/class/net/*/statistics/tx_bytes | paste -sd '+' | tee /tmp/txdata)))
+    RXSPEED=$((($RXBYTES-$PREVRX)/1024))
+    TXSPEED=$((($TXBYTES-$PREVTX)/1024))
 
-        if [ $RXSPEED -gt $(($SLEEPTIME*1024)) ]; then
-            RXSPEED="$(echo "scale=1; ($RXSPEED/($SLEEPTIME*1024))" | bc)M"
-        else
-            RXSPEED="$(($RXSPEED/$SLEEPTIME))"K
-        fi
-        if [ $TXSPEED -gt $(($SLEEPTIME*1024)) ]; then
-            TXSPEED="$(echo "scale=1; ($TXSPEED/($SLEEPTIME*1024))" | bc)M"
-        else
-            TXSPEED="$(($TXSPEED/$SLEEPTIME))"K
-        fi
+    if [ $RXSPEED -gt $(($SLEEPTIME*1024)) ]; then
+        RXSPEED="$(echo "scale=1; ($RXSPEED/($SLEEPTIME*1024))" | bc)M"
+    else
+        RXSPEED="$(($RXSPEED/$SLEEPTIME))"K
+    fi
+    if [ $TXSPEED -gt $(($SLEEPTIME*1024)) ]; then
+        TXSPEED="$(echo "scale=1; ($TXSPEED/($SLEEPTIME*1024))" | bc)M"
+    else
+        TXSPEED="$(($TXSPEED/$SLEEPTIME))"K
+    fi
 
-        echo -n " $RXSPEED   $TXSPEED"
+    echo -n " $RXSPEED   $TXSPEED"
 
-    }
+}
 
-while true
-do
+while true; do
+
     xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) |"
     sleep "$SLEEPTIME"s
 
-done &
+done
