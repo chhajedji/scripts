@@ -82,9 +82,17 @@ bandwidth()
 
 }
 
+netind()
+{
+    timeout 1.5 ping -c 4 -i 0.4 google.com >/dev/null 2>&1
+    STATUS=$?
+    [ $STATUS -eq 0 ] && SHOW= || SHOW=
+    echo -n $SHOW
+}
+
 while true; do
 
-    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) |"
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind)  $(netind)  "
     sleep "$SLEEPTIME"s
 
 done
