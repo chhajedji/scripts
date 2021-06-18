@@ -13,6 +13,9 @@
 # Set terminal colorscheme with `pywal'.
 # wal -n -i "$IMG" -a 82
 
+# First update the monitor settings before changing wallpaper.
+disp_config.sh
+
 # Give any file as argument to set it as wallpaper.
 if [ $1 ]; then
     echo "Setting $1 as new wallpaper."
@@ -22,7 +25,6 @@ fi
 
 echo "Setting new wallpaper."
 
-disp_config.sh
 # To set wallpaper by `feh' without `IMG' variable.
 feh --recursive --bg-scale --randomize $HOME/Pictures/wallpapers/*
 
