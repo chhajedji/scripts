@@ -1,15 +1,10 @@
 #!/bin/sh
 
-# List all unique picture formats in wallpapers directory with this query and
-# grep required file formats to choose from.
+# Usage: new_wall.sh [OPTIONAL DIRECTORY] [OPTIONAL FILE]
+# Randomize a file from the optional argument DIRECTORY or set optional
+# argument FILE as a wallpaper on all desktops.
 
-# ls -R $HOME/Pictures/wallpapers/ | sed "s/.*\(\.[a-z]*$\)/\1/p" -n | sort | uniq
 
-# IMG="$(ls -R $HOME/Pictures/wallpapers/ | grep '.*\.png\|.*\.jpg\|\.jpeg' | shuf -n 1 | xargs -I {} fd {} $HOME/Pictures/wallpapers/ )"
-
-#
-# feh $IMG --bg-scale
-#
 # Set terminal colorscheme with `pywal'.
 # wal -n -i "$IMG" -a 82
 
@@ -18,9 +13,14 @@ disp_config.sh
 
 # Give any file as argument to set it as wallpaper.
 if [ $1 ]; then
+    if [ -d "$1" ]; then
+        echo "Setting wallpaper from $(realpath $1)"
+        feh --recursive --bg-scale --randomize "$1"
+        return $?
+    fi
     echo "Setting $1 as new wallpaper."
-    RET=$(feh --bg-scale "$1")
-    return $RET
+    feh --bg-scale "$1"
+    return $?
 fi
 
 echo "Setting new wallpaper."
