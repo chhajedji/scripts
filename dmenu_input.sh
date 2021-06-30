@@ -128,7 +128,7 @@ case $1 in
                 return 0
             fi
 
-            notify-send "Turning on Focus mode for $TIMER minutes."
+            notify-send -t 3500 "Turning on Focus mode for $TIMER minutes."
             sleep 4s
             notify-send "DUNST_COMMAND_PAUSE"
             sleep "$TIMER"m
@@ -138,7 +138,7 @@ case $1 in
         ;;
     # Search for WiFi networks and connect to selected one.
     -w)
-        notify-send "Searcing for WiFi networks.."
+        notify-send -t 1500 "Searcing for WiFi networks.."
         WIFICURRENT="$(nmcli dev wifi | sed -n 's/^* *\([^ ]*\).*/\1/p')"
         echo "Current network is $WIFICURRENT"
 
@@ -178,7 +178,7 @@ case $1 in
                     sudo shutdown -r now
                     ;;
                 "Sleep")
-                    notify-send "Suspending now.."
+                    notify-send -t 1500 "Suspending now.."
                     sleep 2s
                     suspend_lock.sh
             esac
