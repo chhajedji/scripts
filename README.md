@@ -318,6 +318,17 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - None
 
+#### [remindme](remindme.sh)
+
+- Functionality
+    - Set, view and delete reminders!
+
+- Dependency
+    - `perl`
+    - `dmenu`
+    - `at`
+    - `notify-send`
+
 #### [restartbar](restartbar.sh)
 
 - Functionality
