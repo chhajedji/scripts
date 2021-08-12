@@ -45,21 +45,33 @@ $HOME/.config/picom         \
 $HOME/.config/gsimplecal    \
 $HOME/pnl/github/dot-files/T480/.config/
 
+echo "dot-files status:"
+git status
+
+# For scripts
+
+echo "Switching to scripts"
+
 # Keep a single copy of git specific files like README by saving them and
 # retrieving them later after deleting.
 mkdir -p /tmp/scriptFiles/
-mv $HOME/pnl/github/dot-files/scripts/README.md         \
-$HOME/pnl/github/dot-files/scripts/img_blur_lock.png    \
+
+mv $HOME/pnl/github/scripts/README.md         \
+$HOME/pnl/github/scripts/img_blur_lock.png    \
 /tmp/scriptFiles/
 
-# Remove all files in "scripts" submodule.
-rm -rf $HOME/pnl/github/dot-files/scripts/*
+# Remove all files in "scripts" repo.
+rm -rf $HOME/pnl/github/scripts/*
 
 mv /tmp/scriptFiles/*   \
-$HOME/pnl/github/dot-files/scripts/
+$HOME/pnl/github/scripts/
 
 cp -fr                      \
 $HOME/.scripts/*            \
-$HOME/pnl/github/dot-files/scripts
+$HOME/pnl/github/scripts
 
+rm -rf /tmp/scriptFiles/
+
+cd $HOME/pnl/github/scripts/
+echo "scripts status:"
 git status
