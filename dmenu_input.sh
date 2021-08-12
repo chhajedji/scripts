@@ -16,7 +16,7 @@
 # dmenu_input.sh -w: Select WiFi network to connect.
 # dmenu_input.sh -e: Options to exit system. To use this option, run script as a sudo user.
 
-DMENU_FONT1="Inconsolata 12"
+DMENU_FONT1="Inconsolata"
 
 # If "BROWSER" unset globally, set locally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
@@ -35,7 +35,7 @@ case $1 in
     # Open terminal in a directory.
     -f)
         DIR="$(fd . $HOME --type d 2>/dev/null | sed s:/home/$USER:~: |
-        dmenu -i -l 20 -p "Go to directory:" -fn '$DMENU_FONT1')"
+        dmenu -i -l 20 -p "Go to directory:" -fn "$DMENU_FONT1")"
 
         if [ "$DIR" = "~/" ]; then
             cd $HOME && $TERMINAL &
@@ -70,7 +70,7 @@ case $1 in
     -r)
         mkdir -p $HOME/.tmp
         [ -e $HOME/.tmp/gitfiles ] || find $HOME/ -regex .*/\.git$ -type d 2>/dev/null > $HOME/.tmp/gitfiles
-        REPOS="$(cat $HOME/.tmp/gitfiles | xargs dirname  | sed s:/home/$USER:~: | dmenu -i -l 20 -p 'Select git repo to open' -fn '$DMENU_FONT1')"
+        REPOS="$(cat $HOME/.tmp/gitfiles | xargs dirname  | sed s:/home/$USER:~: | dmenu -i -l 20 -p 'Select git repo to open' -fn "$DMENU_FONT1")"
 
         # Cut the '~/' part from the `REPOS'.
         REPOS="$(echo $REPOS | cut -d '/' -f2-)"

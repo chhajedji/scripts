@@ -10,7 +10,7 @@
 # -r        Set a reminder
 # -d        Delete a reminder
 
-DMENU_FONT1="Inconsolata 12"
+DMENU_FONT1="Inconsolata"
 
 # Gift by a God's man. Don't know how it works but it works soooo well.
 # https://serverfault.com/a/937822
