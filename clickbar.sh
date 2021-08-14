@@ -18,7 +18,7 @@ case $1 in
             1) volume_change.sh -d ;;
             2) volume_change.sh -t ;;
             3) volume_change.sh -i ;;
-            *) echo "Invalid command."; return 1 ;;
+            *) echo "Invalid command."; exit 1 ;;
         esac ;;
 
     -s) $TERMINAL -e htop ;;
@@ -27,7 +27,7 @@ case $1 in
 
     *)
         echo "Invalid option."
-        return 1
+        exit 1
         # Do nothing by default
     ;;
 

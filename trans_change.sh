@@ -19,6 +19,6 @@ case "$1" in
 
     *)
         echo "Invalid option."
-        return 1
+        exit 1
         ;;
 esac

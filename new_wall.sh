@@ -16,11 +16,11 @@ if [ $1 ]; then
     if [ -d "$1" ]; then
         echo "Setting wallpaper from $(realpath $1)"
         feh --recursive --bg-scale --randomize "$1"
-        return $?
+        exit $?
     fi
     echo "Setting $1 as new wallpaper."
     feh --bg-scale "$1"
-    return $?
+    exit $?
 fi
 
 echo "Setting new wallpaper."
