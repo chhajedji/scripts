@@ -32,30 +32,30 @@ case $1 in
             # If message length is zero.
             if [ -z "$WHAT" ]; then
                 echo "No message entered. Reminder not set."
-                return 1
+                exit 1
             else
                 # Check if the input is in format "now + x time".
                 ADDM=$(echo "$WHEN" | grep '[mM]' | grep -o '[0-9]*')
                 if [ $? -eq 0 ]; then
                     echo "notify-send '$WHAT'" | at now + $ADDM minutes
-                    return
+                    exit
                 fi
 
                 ADDH=$(echo "$WHEN" | grep '[hH]' | grep -o '[0-9]*')
                 if [ $? -eq 0 ]; then
                     echo "notify-send '$WHAT'" | at now + $ADDH hours
-                    return
+                    exit
                 fi
 
                 ADDD=$(echo "$WHEN" | grep '[dD]' | grep -o '[0-9]*')
                 if [ $? -eq 0 ]; then
                     echo "notify-send '$WHAT'" | at now + $ADDD days
-                    return
+                    exit
                 fi
 
 
                 # Instead of addition in time, exact time is given.
-                { echo "$WHEN" | grep -q ':'; } && { echo "notify-send '$WHAT'" | at $WHEN; return; }
+                { echo "$WHEN" | grep -q ':'; } && { echo "notify-send '$WHAT'" | at $WHEN; exit; }
 
                 # Check if input is just 4 numbers without any other character and
                 # format it in HH:MM.
@@ -65,17 +65,17 @@ case $1 in
 
                 if [ $TRUETIME ]; then
                     echo "notify-send '$WHAT'" | at $TRUETIME
-                    return
+                    exit
                 fi
 
                 # If no case so far, then invalid input.
                 echo "Invalid time: $WHEN"
-                return 1
+                exit 1
 
             fi
         else
             echo "No time selected."
-            return 1
+            exit 1
         fi
         ;;
 
@@ -87,10 +87,10 @@ case $1 in
 
         if [ -z "$SEL" ]; then
             echo "No job selected to kill."
-            return 1
+            exit 1
         fi
         atrm $(echo $SEL | cut -d ' ' -f 1)
-        return
+        exit
         ;;
 
     # By default, set reminder.

@@ -18,7 +18,7 @@ battery()
     # When battery is completely charged, Plug icon will be shown indicating
     # power from AC supply. If not, then "D" or "C" depending on it's
     # status.
-    [ "$STATCHAR" = "[F]" ] && echo -n "" && return 0
+    [ "$STATCHAR" = "[F]" ] && echo -n "" && exit 0
 
     CAP="$(cat /sys/class/power_supply/BAT1/capacity)%"
 

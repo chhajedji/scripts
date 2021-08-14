@@ -107,7 +107,7 @@ case $1 in
         if [ -n "$QUERY" ]; then
             # If owner is different, don't be evil.
             ME=$(whoami)
-            echo $QUERY | grep -q "^$ME" || { notify-send "[!] Only processes owned by \"$ME\" can be killed." && return 1; }
+            echo $QUERY | grep -q "^$ME" || { notify-send "[!] Only processes owned by \"$ME\" can be killed." && exit 1; }
             # echo $QUERY
             KILLPID="$(echo $QUERY | cut -d "|" -f 2)"
             KILLEDNAME="$(echo $QUERY | cut -d '|' -f11- | sed 's/|/ /g')"
@@ -125,7 +125,7 @@ case $1 in
             if [ 0 -eq $TIMER ]; then
                 notify-send "DUNST_COMMAND_RESUME"
                 notify-send "Notifications resumed."
-                return 0
+                exit 0
             fi
 
             notify-send -t 3500 "Turning on Focus mode for $TIMER minutes."
