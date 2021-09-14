@@ -44,8 +44,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `compton`: Compositing manager.
     - `dunst`: Notification manager.
     - `redshift`: For adjusting screen temperature.
-    - [disp_config](#disp_config).
-    - [new_wall](#new_wall).
+    - [`disp_config`](#disp_config).
+    - [`new_wall`](#new_wall).
 
 #### [blur_lock](blur_lock.sh)
 
@@ -250,10 +250,13 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 #### [new_wall](new_wall.sh)
 
 - Functionality
-    - Set a new wallpaper from files stored in given directory (and subdirectories inside).
+    - Set a new wallpaper randomly from files stored in given directory (and its sub-directories) or set given argument file as wallpaper.
+    - See inside for usage.
+    - Demo video: https://youtu.be/11Dqat5XS9c
 
 - Dependency
     - `feh`
+    - [`disp_config`](#disp_config)
 
 #### [notification_sound](notification_sound.sh)
 
@@ -322,6 +325,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Functionality
     - Set, view and delete reminders!
+    - Demo video: https://youtu.be/5_5AoSFpOxQ
 
 - Dependency
     - `perl`
