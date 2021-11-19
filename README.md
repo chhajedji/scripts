@@ -103,17 +103,20 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Functionality
     - This script includes many functionalities which can be used with `dmenu`.
-    - Do a web search or go to a URL.
-    - Search for manual pages.
+    - Open any file with `xdg-open`.
     - Search for words in dictionary.
+    - Search for manual pages.
+    - Do a web search or go to a URL.
     - Go to git repos in your system. (This uses a file created by command `find $HOME/ -regex .*/\.git$ 2>/dev/null > $HOME/.tmp/gitfiles` to search for path of all git directories. I run this command while updating system Also there should be a directory ".tmp" in your `$HOME` directory. Check `up-to-date` command [here in dot-files repo](https://github.com/chhajedji/dot-files/blob/master/T480/.alias)).
     - Turn off notifications for specified time.
     - Connect to a WiFi network present in vicinity.
     - Quit system in multiple ways like power off, restart, suspend and logout. Not that it uses some options with `sudo` option. So make sure to either run this with `sudo` or add `pkill` and `shutdown` to sudoers.
     - Kill any process owned by same user.
+    - Open terminal in desired directory.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
 
 - Dependency
+    - [`fd`](https://github.com/sharkdp/fd)
     - `firefox` (If globally environmental variable `BROWSER` is unset)
     - `dict` and `dictd`: For command line dictionary.
     - `dmenu`
