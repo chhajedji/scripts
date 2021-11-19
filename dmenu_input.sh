@@ -3,6 +3,8 @@
 # If environmental variable `TERMINAL' is not set, then default terminal used: URxvt.
 
 # Usage
+
+# dmenu_input.sh -o: Open a file with xdg-open.
 # dmenu_input.sh -d: Do a dictionary search using dmenu.
 # dmneu_input.sh -m: Search for a man page.
 # dmneu_input.sh -g: Do a google search in firefox.
@@ -23,6 +25,20 @@ DMENU_FONT1="Inconsolata"
 [ -n "$TERMINAL" ] || TERMINAL="urxvt"
 
 case $1 in
+
+    # Open a file with xdg-open.
+    -o)
+        FILE="$(fd . $HOME --type f 2>/dev/null | sed s:/home/$USER:~: |
+        dmenu -i -l 20 -p "Open which file?" -fn "$DMENU_FONT1")"
+
+        # If a valid file is selected.
+        if [ -n "$FILE" ]; then
+            # Cut the '~/' part from the `DIR'.
+            FILE="$(echo $FILE | cut -d '/' -f2-)"
+
+            xdg-open "$FILE"
+        fi
+        ;;
 
     # Search dictionary.
     -d)
