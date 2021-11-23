@@ -17,14 +17,30 @@
 # dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
 # dmenu_input.sh -w: Select WiFi network to connect.
 # dmenu_input.sh -e: Options to exit system. To use this option, run script as a sudo user.
+# dmenu_input.sh -a: Open file manager in desired directory.
 
 DMENU_FONT1="Inconsolata"
 
-# If "BROWSER" unset globally, set locally.
+# Set some locally used variables if not set globally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
 [ -n "$TERMINAL" ] || TERMINAL="urxvt"
+[ -n "$FILEMANAGER" ] || FILEMANAGER="dolphin"
 
 case $1 in
+
+    # Open file manager in desired directory.
+    -a)
+        DIR="$(fd . $HOME --type d 2>/dev/null | sed s:/home/$USER:~: |
+        dmenu -i -l 20 -p "Choose a directory" -fn "$DMENU_FONT1")"
+
+        # If a valid file is selected.
+        if [ -n "$DIR" ]; then
+            # Cut the '~/' part from the `DIR'.
+            DIR="$(echo $DIR | cut -d '/' -f2-)"
+
+            $FILEMANAGER "$DIR" &
+        fi
+        ;;
 
     # Open a file with xdg-open.
     -o)
@@ -98,7 +114,7 @@ case $1 in
     # Manual page.
     -m)
         # Store list of all available man pages in a file.
-        apropos . |sort >/tmp/manlist.txt
+        apropos . | sort >/tmp/manlist.txt
 
         # In manlist.txt, entries are in the form
 

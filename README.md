@@ -104,6 +104,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Functionality
     - This script includes many functionalities which can be used with `dmenu`.
     - Open any file with `xdg-open`.
+    - Open file manager in desired directory.
     - Search for words in dictionary.
     - Search for manual pages.
     - Do a web search or go to a URL.
@@ -117,7 +118,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependency
     - [`fd`](https://github.com/sharkdp/fd)
-    - `firefox` (If globally environmental variable `BROWSER` is unset)
+    - `dolphin` (If `FILEMANAGER` is not set globally).
+    - `firefox` (If globally environmental variable `BROWSER` is unset).
     - `dict` and `dictd`: For command line dictionary.
     - `dmenu`
     - `urxvt` (If globally environmental variable `TERMINAL` is unset).
