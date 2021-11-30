@@ -103,6 +103,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Functionality
     - This script includes many functionalities which can be used with `dmenu`.
+    - Run any executable or system application by name (Just like start menu).
     - Open any file with `xdg-open`.
     - Open file manager in desired directory.
     - Search for words in dictionary.
@@ -118,6 +119,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependency
     - [`fd`](https://github.com/sharkdp/fd)
+    - [`j4-dmenu-desktop`](https://github.com/enkore/j4-dmenu-desktop) (Optional, but helpful in opening direct applications.)
     - `dolphin` (If `FILEMANAGER` is not set globally).
     - `firefox` (If globally environmental variable `BROWSER` is unset).
     - `dict` and `dictd`: For command line dictionary.
