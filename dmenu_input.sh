@@ -11,8 +11,7 @@
 # dmneu_input.sh -r: Open a git repo stored in `$HOME'.
 # dmenu_input.sh -f: Open a terminal is a directory. Similar to fuzzy
 #                    finder through dmenu but for directory instead of files.
-# dmenu_input.sh -l: Normal application launcher using dmenu. Runs
-#                    basic `dmenu_run' command.
+# dmenu_input.sh -l: Run an application or show all executables in the PATH.
 # dmneu_input.sh -k: Kill a process.
 # dmneu_input.sh -t: Set a timer To turn off notifications (Focus mode).
 # dmenu_input.sh -w: Select WiFi network to connect.
@@ -80,9 +79,11 @@ case $1 in
         fi
         ;;
 
-    # Basic `dmenu_run' to launch applications/run commands.
+    # Run an application or show all executables in the PATH.
     -l)
-        dmenu_run -p "Run command:" -fn "$DMENU_FONT1"
+        command -v 'j4-dmenu-desktop' >/dev/null &&
+            { j4-dmenu-desktop --dmenu "dmenu -i -p 'Open application:' -fn "$DMENU_FONT1""; } ||
+                { dmenu_run -i -p "Run command:" -fn "$DMENU_FONT1"; }
         ;;
 
     # Search google or open a URL.
