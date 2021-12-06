@@ -80,6 +80,8 @@ case $1 in
         ;;
 
     # Run an application or show all executables in the PATH.
+    # If the application is not found, or the name is incorrect, then all
+    # executables will be displayed by `dmenu_run`
     -l)
         command -v 'j4-dmenu-desktop' >/dev/null &&
             { j4-dmenu-desktop --dmenu "dmenu -i -p 'Open application:' -fn "$DMENU_FONT1""; } ||
