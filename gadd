@@ -58,6 +58,7 @@ mkdir -p /tmp/scriptFiles/
 
 mv $HOME/pnl/github/scripts/README.md         \
 $HOME/pnl/github/scripts/img_blur_lock.png    \
+$HOME/pnl/github/scripts/requirements.txt     \
 /tmp/scriptFiles/
 
 # Remove all files in "scripts" repo.
