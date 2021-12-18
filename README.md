@@ -68,7 +68,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Change screen brightness.
 
 - Dependency
-    - None
+    - `xbacklight`
 
 #### [clickbar](clickbar.sh)
 
@@ -182,6 +182,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependency
     - `compton`
+    - `xdotool`
 
 #### [gadd](gadd)
 
