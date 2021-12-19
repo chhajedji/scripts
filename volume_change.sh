@@ -7,28 +7,28 @@ case $1 in
 
 # Toggle Mute.
     -t)
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
-        echo "Toggle Mute."
+        amixer -D pulse set Master toggle &&
+            echo "Toggle Mute."
         ;;
 
 # Increase volume
     -i)
-    [ "$STATE" = "off" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle
-        pactl set-sink-volume @DEFAULT_SINK@ +5%
-        echo "Increasing volume."
+    [ "$STATE" = "off" ] && amixer -D pulse set Master toggle
+        amixer -D pulse set Master 5%+ &&
+            echo "Increasing volume."
         ;;
 
 # Decrease volume.
     -d)
-    [ "$STATE" = "off" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
-        echo "Decreasing volume."
+    [ "$STATE" = "off" ] && amixer -D pulse set Master toggle
+        amixer -D pulse set Master 5%- &&
+            echo "Decreasing volume."
     ;;
 
 # Mute Mic.
     -mm)
-        pactl set-source-mute 1 toggle
-        echo "Muting mic."
+        amixer set Capture toggle &&
+            echo "Muting mic."
         ;;
 
     *)

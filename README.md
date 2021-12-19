@@ -44,6 +44,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `compton`: Compositing manager.
     - `dunst`: Notification manager.
     - `redshift`: For adjusting screen temperature.
+    - [`picom`](https://github.com/yshui/picom)
     - [`disp_config`](#disp_config).
     - [`new_wall`](#new_wall).
 
