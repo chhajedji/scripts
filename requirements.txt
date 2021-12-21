@@ -30,3 +30,5 @@ scrot
 i3lock
 xserver-xorg-input-synaptics
 xdotool
+at
+figlet
