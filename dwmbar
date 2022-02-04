@@ -92,7 +92,7 @@ netind()
 
 while true; do
 
-    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) |"
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) $(netind)"
     sleep "$SLEEPTIME"s
 
 done
