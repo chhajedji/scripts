@@ -11,6 +11,16 @@ lockind()
     echo -n "$CAPSLOCK  $NUMLOCK"
 }
 
+weather()
+{
+    RAW="$(curl wttr.in/west+lafayette?format=2 2>/dev/null)"
+    if [ "$RAW" ]; then
+        echo -n "$(echo \"$RAW\" | sed 's/. *//' )"
+    else
+        echo -n "-"
+    fi
+}
+
 battery()
 {
     STATCHAR="[$(cat /sys/class/power_supply/BAT0/status | colrm 2 99)]"
@@ -92,7 +102,7 @@ netind()
 
 while true; do
 
-    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) $(netind)"
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(weather) | $(datetime) | $(lockind) $(netind)"
     sleep "$SLEEPTIME"s
 
 done
