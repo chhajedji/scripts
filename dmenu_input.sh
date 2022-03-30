@@ -17,6 +17,7 @@
 # dmenu_input.sh -w: Select WiFi network to connect.
 # dmenu_input.sh -e: Options to exit system. To use this option, run script as a sudo user.
 # dmenu_input.sh -a: Open file manager in desired directory.
+# dmenu_input.sh -b: Google search meaning of the query.
 
 DMENU_FONT1="Inconsolata"
 
@@ -61,6 +62,19 @@ case $1 in
         if [ -n "$WORD" ]; then
             $TERMINAL -name dropdown_dictionary -e sh -c "dict ${WORD} |less"
         fi
+        ;;
+
+        # Google search meaning of the query.
+    -b)
+        WORD=$(echo -n '' | dmenu -i -l 20 -p "Find meaning on Google:" -fn "$DMENU_FONT1")
+        QUERY="$(echo $WORD | sed 's/[ \t]*$//g' | sed 's/ /+/g')"
+
+        if [ -n "$QUERY" ]; then
+            SEARCHURL="https://www.google.com/search?q=${QUERY}+meaning"
+            echo $SEARCHURL
+            $BROWSER "${SEARCHURL}"
+        fi
+
         ;;
 
     # Open terminal in a directory.
