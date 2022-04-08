@@ -43,6 +43,7 @@ $HOME/.config/dunst         \
 $HOME/.config/compton       \
 $HOME/.config/picom         \
 $HOME/.config/gsimplecal    \
+$HOME/.config/fontconfig    \
 $HOME/pnl/github/dot-files/T480/.config/
 
 echo "dot-files status:"
