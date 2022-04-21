@@ -12,6 +12,8 @@ ONE="xrandr --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP
 
 LAPTOPLEFT="xrandr --output eDP1 --mode 1600x900 --pos 0x90 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --primary --mode 1920x1080 --pos 1600x0 --rotate normal --output VIRTUAL1 --off"
 
+INVERTED="xrandr --output eDP1 --mode 1920x1080 --pos 0x0 --rotate inverted --output DP1 --off --output HDMI1 --off --output VIRTUAL1 --off"
+
 case "$1" in
 
     -dup)
@@ -32,6 +34,11 @@ case "$1" in
     -up)
         # HDMI2 up, monitor down.
         $LAPTOPDOWN && echo "Configuring 2 displays."
+        ;;
+
+    -inv)
+        # Sometimes useful when your laptop screen goes 360 degrees.
+        $INVERTED && echo "Configuring inverted screen."
         ;;
 
     *)
