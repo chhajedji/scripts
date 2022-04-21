@@ -440,6 +440,17 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - [long-running](#long-running)
     - [preexec](#preexec)
 
+#### [unpasspdf](unpasspdf.sh)
+
+- Functionality
+    - Remove passwords from protected PDF files. Whole functionality
+      of this script can be destroyed with pdftk (which indeed is used
+      in this script).
+
+- Dependency
+    - `pdftk`
+
+
 #### [volume_change](volume_change.sh)
 
 - Functionality

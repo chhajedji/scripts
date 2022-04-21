@@ -32,3 +32,4 @@ xserver-xorg-input-synaptics
 xdotool
 at
 figlet
+pdftk
