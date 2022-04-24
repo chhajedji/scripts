@@ -8,7 +8,7 @@
 # crosses. `CRITICAL_THRESHOLD' value.
 
 ALERT_SENT=0
-CRITICAL_THRESHOLD=35
+CRITICAL_THRESHOLD=25
 SAFE_THRESHOLD=80
 
 # Global variables which might be used by other applications.
@@ -18,7 +18,7 @@ export BAT_NORMAL=0
 
 while true; do
 
-BAT_STATUS=$(cat /sys/class/power_supply/BAT1/capacity)
+BAT_STATUS=$(cat /sys/class/power_supply/BAT0/capacity)
 
     # Set environment variables.
     if [ $BAT_STATUS -lt $CRITICAL_THRESHOLD ]; then
