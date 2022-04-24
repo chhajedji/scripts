@@ -13,7 +13,7 @@
 
 # First update the monitor settings before changing wallpaper.
 # Get this script here: https://github.com/chhajedji/scripts/blob/master/disp_config.sh
-disp_config.sh
+# disp_config.sh
 
 # Give any file or directory as argument to set it as wallpaper.
 if [ "$1" ]; then
