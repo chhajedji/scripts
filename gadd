@@ -7,11 +7,11 @@ cd $HOME/pnl/github/dot-files/
 
 git checkout T480 >/dev/null
 
-# Remove all files in T480/.
-rm -rf $HOME/pnl/github/dot-files/T480
+# Remove all files in home/.
+rm -rf $HOME/pnl/github/dot-files/home
 
 # Create longest directory so that all parent directories will be auto-created.
-mkdir -p $HOME/pnl/github/dot-files/T480/
+mkdir -p $HOME/pnl/github/dot-files/home/
 
 # Copy changed files at $HOME/.
 cp -fr                      \
@@ -26,17 +26,17 @@ $HOME/.profile              \
 $HOME/.gitconfig            \
 $HOME/.Xresources           \
 $HOME/.bash_profile         \
-$HOME/pnl/github/dot-files/T480/
+$HOME/pnl/github/dot-files/home/
 
 # Copy files at $HOME/.local/share.
-mkdir -p $HOME/pnl/github/dot-files/T480/.local/share
+mkdir -p $HOME/pnl/github/dot-files/home/.local/share
 cp -rf                          \
 $HOME/.local/share/konsole      \
 $HOME/.local/share/supplements  \
-$HOME/pnl/github/dot-files/T480/.local/share
+$HOME/pnl/github/dot-files/home/.local/share
 
 # Copy changed files at $HOME/.config/.
-mkdir -p $HOME/pnl/github/dot-files/T480/.config/
+mkdir -p $HOME/pnl/github/dot-files/home/.config/
 cp -fr                      \
 $HOME/.config/i3            \
 $HOME/.config/dunst         \
@@ -44,7 +44,7 @@ $HOME/.config/compton       \
 $HOME/.config/picom         \
 $HOME/.config/gsimplecal    \
 $HOME/.config/fontconfig    \
-$HOME/pnl/github/dot-files/T480/.config/
+$HOME/pnl/github/dot-files/home/.config/
 
 echo "dot-files status:"
 git status
