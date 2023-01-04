@@ -414,6 +414,14 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 - Dependency
     - `i3lock`
 
+#### [toggle_hw](toggle_hw.sh)
+
+- Functionality
+    - Toggle some of the hardware functions like mouse, touchscreen, touchpad.
+
+- Dependency
+    - None
+
 #### [touchpad](touchpad.sh)
 
 - Functionality
