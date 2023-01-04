@@ -130,17 +130,6 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `nmcli`
     - [`suspend_lock.sh`](suspend_lock.sh)
 
-#### [editor](editor.sh)
-
-- Functionality
-    - Shortcut to open editor.
-	- Prefered editor is `emacs`. If not installed then open in `vi`.
-
-- Dependency
-    - `emacs` (optional).
-	- `Vi`.
-	- `urxvt` (If globally `TERMINAL` is not set).
-
 #### [disp_config](disp_config.sh)
 
 - Functionality
@@ -158,6 +147,17 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependency
     - `amixer`
+
+#### [editor](editor.sh)
+
+- Functionality
+    - Shortcut to open editor.
+	- Prefered editor is `emacs`. If not installed then open in `vi`.
+
+- Dependency
+    - `emacs` (optional).
+	- `Vi`.
+	- `urxvt` (If globally `TERMINAL` is not set).
 
 #### [filecopy](filecopy.sh)
 
