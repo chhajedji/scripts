@@ -18,8 +18,13 @@
 # dmenu_input.sh -e: Options to exit system. To use this option, run script as a sudo user.
 # dmenu_input.sh -a: Open file manager in desired directory.
 # dmenu_input.sh -b: Google search meaning of the query.
+# dmenu_input.sh -c: Copy the highlighted text to a temporary clipboard.
+# dmenu_input.sh -p: Paste the selected text from the temporary clipboard created using `-c` option.
 
 DMENU_FONT1="Inconsolata"
+CBF='/tmp/text'
+
+touch "$CBF"
 
 # Set some locally used variables if not set globally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
@@ -232,6 +237,22 @@ case $1 in
                     suspend_lock.sh
             esac
         fi
+        ;;
+
+    # Copy the selected text
+    -c)
+        SEL="$(xclip -o)"
+        if grep -q "^$SEL$" "$CBF"; then
+            notify-send "Text already present" "Selected text is already present."
+        else
+            echo "$SEL" >> "$CBF"
+        fi
+        ;;
+
+    # Paste the chosen text.
+    -p)
+        SEL="$(cat "$CBF" | dmenu -fn "$DMENU_FONT1" -i -l 20)"
+        xdotool type "$SEL"
         ;;
 
     *)

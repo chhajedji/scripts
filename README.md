@@ -117,6 +117,7 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Kill any process owned by same user.
     - Open terminal in desired directory.
     - For more details see inside [dmenu_input.sh](dmenu_input.sh).
+    - Copy the highlighted text to a temporary clipboard and paste from it.
 
 - Dependency
     - [`fd`](https://github.com/sharkdp/fd)
@@ -129,6 +130,8 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `dunst`/`notify-send`
     - `nmcli`
     - [`suspend_lock.sh`](suspend_lock.sh)
+    - `xdotool`
+    - `notify-send`
 
 #### [disp_config](disp_config.sh)
 
