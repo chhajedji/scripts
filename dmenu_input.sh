@@ -245,7 +245,7 @@ case $1 in
         if grep -q "^$SEL$" "$CBF"; then
             notify-send "Text already present" "Selected text is already present."
         else
-            echo "$SEL" >> "$CBF"
+            echo "$(echo $SEL; cat $CBF)" > "$CBF"
         fi
         ;;
 
