@@ -37,8 +37,8 @@ battery()
 
 vol()
 {
-    amixer get Master | tail -1 | grep -w "on" >/dev/null &&
-        echo -n " $(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
+    amixer -D pulse get Master | tail -1 | grep -w "on" >/dev/null &&
+        echo -n " $(amixer -D pulse get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')" ||
             echo -n " MUTE"
 }
 
@@ -102,7 +102,8 @@ netind()
 
 while true; do
 
-    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(weather) | $(datetime) | $(lockind) $(netind)"
+    xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(datetime) | $(lockind) $(netind)"
+    # xsetroot -name "$(bandwidth) | $(vol) | $(battery) | $(cpu) - $(temp) | $(weather) | $(datetime) | $(lockind) $(netind)"
     sleep "$SLEEPTIME"s
 
 done
