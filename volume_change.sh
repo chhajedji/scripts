@@ -1,6 +1,6 @@
 #!/bin/sh
 
-amixer get Master | tail -1 | grep -w '\[on\]' >/dev/null &&
+amixer -D pulse get Master | tail -1 | grep -w '\[on\]' >/dev/null &&
     STATE="on" || STATE="off"
 
 case $1 in
@@ -14,20 +14,22 @@ case $1 in
 # Increase volume
     -i)
     [ "$STATE" = "off" ] && amixer -D pulse set Master toggle
-        amixer -D pulse set Master 5%+ &&
+        # amixer -D pulse set Master 5%+ &&
+        pactl set-sink-volume @DEFAULT_SINK@ +5% &&
             echo "Increasing volume."
         ;;
 
 # Decrease volume.
     -d)
     [ "$STATE" = "off" ] && amixer -D pulse set Master toggle
-        amixer -D pulse set Master 5%- &&
+        # amixer -D pulse set Master 5%- &&
+        pactl set-sink-volume @DEFAULT_SINK@ -5% &&
             echo "Decreasing volume."
     ;;
 
 # Mute Mic.
     -mm)
-        amixer set Capture toggle &&
+        amixer -D pulse set Capture toggle &&
             echo "Muting mic."
         ;;
 
