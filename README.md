@@ -3,6 +3,13 @@
 - Scripts to implement some basic computer (mainly linux) functionalities and a bit complex stuff using some some external programs.
 - These are more handy when using a [tiling window manager](https://en.wikipedia.org/wiki/Tiling_window_manager). As a raw build of most of the tiling window mangers lacks most of the basic bindings like to change volume, brightness, turn on/off mic etc.
 
+### Installation
+
+All the dependencies are listed in the [requirements.txt](requirements.txt) file. They can be installed at once with your package manager. For instance, with `apt`, install them with command:
+```sh
+cat requirements.txt | xargs sudo apt install -y
+```
+
 ### How to use these?
 
 - Clone or download this repository.
@@ -40,7 +47,6 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
 
 - Dependencies
     - `parcellite`: Clipboard manager.
-    - `nm-applet`: Network manager.
     - `compton`: Compositing manager.
     - `dunst`: Notification manager.
     - `redshift`: For adjusting screen temperature.
@@ -61,7 +67,6 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - `xrandr`
     - `ffmpeg`
     - `i3lock`
-    - [lock2.png](https://github.com/chhajedji/dot-files/blob/master/T480/.local/share/supplements/lock2.png) stored at `$HOME/.local/share/supplemets/lock2.png`.
 
 #### [brightness_change](brightness_change.sh)
 
@@ -479,4 +484,12 @@ echo "export PATH=\"\$PATH:\$HOME/.scripts\"" >> $HOME/.profile
     - Toggles WiFi connection.
 
 - Dependency
-    - `nm-applet`
+    - `nm-applet` (Generally pre-installed with `NetworkManagement`)
+
+
+> ## Other dependencies
+>
+> Not directly used in these scripts but indirectly used by other commands.
+>
+> [`devour`](https://github.com/salman-abedin/devour)
+> [Brave Browser](https://brave.com/linux)
