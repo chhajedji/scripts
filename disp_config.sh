@@ -47,7 +47,7 @@ case "$1" in
         # Check if laptop lid is open or close. Act according to that.
         # If lid is open, configure right-left display, or else duplicate.
 
-            cat /proc/acpi/button/lid/LID0/state | grep 'open' >/dev/null
+            cat /proc/acpi/button/lid/LID/state | grep 'open' >/dev/null
             STATE="$?"
             if [ "$STATE" = '0' ]; then
                 xrandr | grep 'HDMI. connected' >/dev/null
