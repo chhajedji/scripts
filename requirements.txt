@@ -38,3 +38,4 @@ screenfetch
 neofetch
 alsa-tools
 tree
+arandr
