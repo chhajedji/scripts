@@ -39,3 +39,5 @@ neofetch
 alsa-tools
 tree
 arandr
+ncal
+pdfgrep
