@@ -5,7 +5,7 @@
 
 cd $HOME/pnl/github/dot-files/
 
-git checkout T480 >/dev/null
+git checkout T14 >/dev/null
 
 # Remove all files in home/.
 rm -rf $HOME/pnl/github/dot-files/home
