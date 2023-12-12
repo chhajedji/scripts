@@ -19,7 +19,9 @@ xset dpms 420
 # Usage: `xinput` - lists all input devices.
 #        `xinput list-props [Device name in quotes/Device ID]` - lists all properties of given device.
 #        `xinput set-prop [Device name in quotes/Device ID]` - set desired property for given device.
-xinput set-prop "DLL07A0:01 044E:120B" "Device Enabled" 0
+
+# For T14
+xinput set-prop "Synaptics TM3471-020" "Device Enabled" 0
 
 # Try to use picom, if not available then use compton.
 { command -v picom && { pgrep picom || picom --config $HOME/.config/picom/picom.conf -b & }; } ||
