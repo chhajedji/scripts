@@ -21,7 +21,7 @@ case $1 in
             *) echo "Invalid command."; exit 1 ;;
         esac ;;
 
-    -s) $TERMINAL -e htop ;;
+    -s) $TERMINAL_LITE -e htop ;;
 
     -d) gsimplecal ;;
 

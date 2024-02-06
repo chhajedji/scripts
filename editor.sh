@@ -15,9 +15,9 @@ case "$1" in
 	;;
 
     -v)
-	[ -n "$TERMINAL" ] || TERMINAL="urxvt"; $TERMINAL -e vi
+	[ -n "$TERMINAL_LITE" ] || TERMINAL_LITE="xfce4-terminal"; $TERMINAL_LITE -e vi
 	;;
     *)
 	{ { type emacs >/dev/null && { emacsclient -c || emacs; }; } ||
-	      { [ -n "$TERMINAL" ] || TERMINAL="urxvt"; $TERMINAL -e vi; }; }&
+	      { [ -n "$TERMINAL_LITE" ] || TERMINAL_LITE="xfce4-terminal"; $TERMINAL_LITE -e vi; }; } &
 esac
