@@ -44,6 +44,7 @@ $HOME/.config/compton       \
 $HOME/.config/picom         \
 $HOME/.config/gsimplecal    \
 $HOME/.config/fontconfig    \
+$HOME/.config/xfce4         \
 $HOME/pnl/github/dot-files/home/.config/
 
 echo "dot-files status:"

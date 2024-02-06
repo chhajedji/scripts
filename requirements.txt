@@ -42,3 +42,4 @@ arandr
 ncal
 pdfgrep
 pandoc
+xfce4-terminal

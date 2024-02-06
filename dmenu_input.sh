@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # If environmental variable `TERMINAL' is not set, then default terminal used: URxvt.
+# If environmental variable `TERMINAL_LITE' is not set, then default terminal used: xfce4-terminal.
 
 # Usage
 
@@ -29,6 +30,7 @@ touch "$CBF"
 # Set some locally used variables if not set globally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
 [ -n "$TERMINAL" ] || TERMINAL="urxvt"
+[ -n "$TERMINAL_LITE" ] || TERMINAL_LITE="xfce4-terminal"
 [ -n "$FILEMANAGER" ] || FILEMANAGER="dolphin"
 
 case $1 in
@@ -65,7 +67,8 @@ case $1 in
     -d)
         WORD=$(cat /usr/share/dict/words | dmenu -i -l 20 -p "Find meaning of:" -fn "$DMENU_FONT1")
         if [ -n "$WORD" ]; then
-            $TERMINAL -name dropdown_dictionary -e sh -c "dict ${WORD} |less"
+            # $TERMINAL_LITE -name dropdown_dictionary -e sh -c "dict ${WORD} |less"
+            $TERMINAL_LITE --title=dropdown_dictionary -e "sh -c 'dict \"${WORD}\" | less'"
         fi
         ;;
 
@@ -149,7 +152,7 @@ case $1 in
         WORD="$(cat /tmp/manlist.txt | dmenu -i -l 20 -p "Manual page for:" -fn "$DMENU_FONT1" | sed 's/\(.*\) (\([0-9]*\)).*/\2 \1/')"
         if [ -n "$WORD" ]; then
             echo "Showing result for \"man $WORD\""
-            $TERMINAL -name dropdown_manual -e sh -c "man ${WORD} || figlet -c 'No manual entry for \"${WORD}\"' |less" >/dev/null
+            $TERMINAL_LITE --title=dropdown_manual -e "sh -c 'man ${WORD} || (figlet -c \"No manual entry for \\\"${WORD}\\\"\") | less'" >/dev/null
             # exec i3-msg [instance="dropdown_manual"] focus >/dev/null
         fi
         ;;
